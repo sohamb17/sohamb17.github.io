@@ -1,0 +1,107 @@
+{
+  "profile": {
+    "name": "Soham Belurgikar",
+    "portrait": { "src": "./images/soham-portrait.jpg", "alt": "Soham Belurgikar smiling outdoors" },
+    "location": "Champaign, Illinois",
+    "email": "sohamsb2@illinois.edu",
+    "github": "https://github.com/sohamb17",
+    "linkedin": "https://linkedin.com/in/sohamb17",
+    "scholar": "https://scholar.google.com/citations?user=E5l8ukMAAAAJ&hl=en&oi=ao",
+    "role": "Software Engineer",
+    "specialty": "Distributed systems & ML infrastructure",
+    "availability": "Seeking Summer 2027 internships",
+    "intro": "I build distributed systems, data platforms, and intelligent search. Currently pursuing my Master of Computer Science at UIUC, after three years engineering data systems at Barclays."
+  },
+  "projects": [
+    {
+      "id": "frameseek",
+      "name": "FrameSeek",
+      "category": "MULTIMODAL RETRIEVAL",
+      "title": "Find the moment. Not just the video.",
+      "resumeTitle": "Multimodal Video Search Engine",
+      "description": "A search engine that brings together what’s said, written, and seen in a video. Ask a question, refine it in conversation, and jump straight to the relevant moment.",
+      "technologies": ["Python", "PyTorch", "scikit-learn", "Go", "PostgreSQL", "LangChain", "LangGraph", "Docker", "AWS"],
+      "metrics": [
+        { "value": "100+", "unit": "hours of indexed video" },
+        { "value": "500 ms", "unit": "p95 search latency" },
+        { "value": "+8 pp", "unit": "query Success@5" }
+      ],
+      "detail": "A learned relevance scorer improved Success@5 over OCR/transcript baselines on 300 held-out queries (temporal IoU ≥ 0.5). Checkpointed AWS ingestion handled 100+ GB of raw video with zero data loss.",
+      "bullets": [
+        "Built an end-to-end multimodal search platform combining transcripts, OCR, and visual embeddings across 100+ hours of video; served results via a Go REST API at 500 ms p95 search latency.",
+        "Trained a logistic regression relevance scorer in scikit-learn, boosting query Success@5 by +8 percentage points over OCR/transcript baselines on 300 held-out queries (temporal IoU ≥ 0.5).",
+        "Engineered a fault-tolerant ingestion pipeline on AWS S3 and Batch with idempotent retries and stage checkpoints, achieving zero data loss across 100+ GB of raw video feeds.",
+        "Implemented conversational multi-turn retrieval using LangGraph and custom LangChain agents to resolve follow-up context and return timestamp-linked playback results."
+      ]
+    },
+    {
+      "id": "streamforge",
+      "name": "StreamForge",
+      "category": "DISTRIBUTED SYSTEMS",
+      "title": "From live events to ready-to-use features.",
+      "resumeTitle": "Distributed Real-Time Feature Store & Pipeline",
+      "description": "A distributed streaming pipeline that computes and serves fresh feature vectors for ML inference, with replicated state and low-latency retrieval.",
+      "technologies": ["Go", "Python", "Apache Kafka", "Redis", "gRPC", "Docker", "PostgreSQL"],
+      "metrics": [
+        { "value": "25k+", "unit": "events per second" },
+        { "value": "<12 ms", "unit": "p99 feature reads*" },
+        { "value": "5 nodes", "unit": "Raft replication" }
+      ],
+      "detail": "*Read latency measured under simulated high concurrency. Docker Compose and Prometheus/Grafana monitoring supported 99.9% uptime across cluster test runs.",
+      "bullets": [
+        "Designed a distributed streaming pipeline in Go and Kafka processing 25,000+ events/sec to compute and serve real-time feature vectors for downstream ML inference models.",
+        "Implemented a Raft-based consensus mechanism in Go for fault-tolerant state replication across a 5-node cluster, ensuring consistent state updates during network partitions.",
+        "Exposed low-latency feature retrieval via gRPC microservices with Redis caching, sustaining <12 ms p99 read latency under simulated high concurrency.",
+        "Containerized the multi-service architecture with Docker Compose and configured Prometheus/Grafana alerting, maintaining 99.9% uptime across cluster test runs."
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "level": "BA4",
+      "dates": "Apr. 2025 – Jul. 2026",
+      "summary": "Making distributed data systems easier to trust.",
+      "bullets": [
+        "Built a distributed comparison framework for 10+ node Spark clusters, isolating race conditions and cutting regression verification time across runtime versions by 50%.",
+        "Architected an on-demand synthetic data platform using React, Spring Boot, and Python, generating 1M+ records to enable load testing without production PII.",
+        "Automated data reconciliation and validation pipelines across staging and production, reducing manual verification effort by approximately 40%."
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "level": "BA3",
+      "dates": "Jul. 2023 – Mar. 2025",
+      "summary": "Modernizing pipelines. Shortening the path to production.",
+      "bullets": [
+        "Modernized core distributed data pipelines by migrating batch workloads to Spark 3.x on open-source Hadoop (HDFS), eliminating runtime bottlenecks with zero production downtime.",
+        "Engineered automated CI/CD pipelines via Jenkins and Groovy, cutting deployment cycle times by 35% across 15+ distributed artifacts and staging environments.",
+        "Benchmarked and tuned Spark SQL query plans across 10+ TB financial datasets, resolving execution bottlenecks while preserving 100% data integrity."
+      ]
+    },
+    {
+      "title": "Summer Intern",
+      "level": "BA3",
+      "dates": "Jun. 2022 – Jul. 2022",
+      "summary": "Turning manual reconciliation into repeatable checks.",
+      "bullets": [
+        "Developed a Python tool that automated cross-system dataset reconciliation and generated structured discrepancy reports for millions of records, packaged in Docker and integrated into a Jenkins pipeline, enabling the team to spot data mismatches quickly and cut manual review effort."
+      ]
+    }
+  ],
+  "education": [
+    { "school": "University of Illinois Urbana-Champaign", "shortName": "UIUC", "degree": "Master of Computer Science", "dates": "Aug. 2026 – May 2028 (Expected)", "location": "Urbana-Champaign, IL", "detail": "MCS · In progress" },
+    { "school": "Sardar Patel Institute of Technology", "shortName": "SPIT", "degree": "B.Tech in Computer Engineering", "dates": "Aug. 2019 – May 2023", "location": "Mumbai, India", "detail": "CGPA: 9.21 / 10.0" }
+  ],
+  "skills": [
+    { "name": "Languages", "items": ["Python", "Go", "Java", "TypeScript", "C++", "SQL", "C", "Groovy", "Bash"] },
+    { "name": "Distributed systems & data", "items": ["Apache Spark", "Apache Kafka", "Hadoop (HDFS)", "PostgreSQL", "Redis"] },
+    { "name": "ML & retrieval", "items": ["PyTorch", "TensorFlow", "scikit-learn", "LangChain", "LangGraph", "pandas", "NumPy"] },
+    { "name": "Cloud & DevOps", "items": ["AWS (S3, Batch, EC2)", "Docker", "Jenkins", "CI/CD", "AI-assisted development", "Linux", "Git", "GitLab"] },
+    { "name": "Frameworks & protocols", "items": ["Spring Boot", "Django", "React", "Angular", "Node.js", "REST APIs", "gRPC"] }
+  ],
+  "publications": [
+    { "title": "A Novel Approach to Fall Detection System using Computer Vision", "venue": "ICACCS 2023", "role": "Co-author", "url": "https://doi.org/10.1109/ICACCS57279.2023.10113049" },
+    { "title": "Street Smart: An Intelligent Traffic Management System", "venue": "INDIACom 2023", "role": "Co-author", "url": "https://www.researchgate.net/publication/376451168_Street_Smart_An_Intelligent_Traffic_Management_System" }
+  ]
+}

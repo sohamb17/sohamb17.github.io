@@ -1,0 +1,172 @@
+\documentclass[letterpaper,10pt]{article}
+ 
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+ 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+ 
+% Precision margins for guaranteed 1-page fit
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.35in}
+ 
+\urlstyle{same}
+ 
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+ 
+% Tight section formatting
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+ 
+% Custom commands - Linear ATS text flow with zero bloat
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+ 
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-3pt}\item
+    \textbf{#1} \hfill #2 \\
+    \textit{\small#3} \hfill \textit{\small #4}
+    \vspace{-4pt}
+}
+ 
+\newcommand{\resumeSubSubheading}[2]{
+  \vspace{-2pt}\item
+    \textit{\small#1} \hfill \textit{\small #2}
+    \vspace{-4pt}
+}
+ 
+\newcommand{\resumeProjectHeading}[2]{
+  \vspace{-3pt}\item
+    \textbf{#1} \\
+    \textit{\small#2}
+    \vspace{-4pt}
+}
+ 
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+ 
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-2pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+ 
+\begin{document}
+ 
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Soham Belurgikar} \\ \vspace{2pt}
+    \small Champaign, IL $|$ \href{mailto:sohamsb2@illinois.edu}{\underline{sohamsb2@illinois.edu}} $|$
+    \href{https://linkedin.com/in/sohamb17}{\underline{linkedin.com/in/sohamb17}} $|$
+    \href{https://github.com/sohamb17}{\underline{github.com/sohamb17}}
+\end{center}
+ 
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of Illinois Urbana-Champaign}{Urbana-Champaign, IL}
+      {Master of Computer Science (MCS)}{Aug. 2026 -- May 2028 (Expected)}
+    \vspace{-2pt}
+    \resumeSubheading
+      {Sardar Patel Institute of Technology}{Mumbai, India}
+      {B.Tech in Computer Engineering; CGPA: 9.21/10.0}{Aug. 2019 -- May 2023}
+  \resumeSubHeadingListEnd
+ 
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+ 
+    \resumeSubheading
+      {Barclays}{Pune, India}
+      {Software Engineer (BA4)}{Apr. 2025 -- Jul. 2026}
+      \resumeItemListStart
+        \resumeItem{Built a distributed comparison framework for 10+ node Spark clusters, isolating race conditions and cutting regression verification time across runtime versions by 50\%.}
+        \resumeItem{Architected an on-demand synthetic data platform using React, Spring Boot, and Python, generating 1M+ records to enable load testing without production PII.}
+        \resumeItem{Automated data reconciliation and validation pipelines across staging and production, reducing manual verification effort by approximately 40\%.}
+      \resumeItemListEnd
+ 
+    \resumeSubSubheading
+      {Software Engineer (BA3)}{Jul. 2023 -- Mar. 2025}
+      \resumeItemListStart
+        \resumeItem{Modernized core distributed data pipelines by migrating batch workloads to Spark 3.x on open-source Hadoop (HDFS), eliminating runtime bottlenecks with zero production downtime.}
+        \resumeItem{Engineered automated CI/CD pipelines via Jenkins and Groovy, cutting deployment cycle times by 35\% across 15+ distributed artifacts and staging environments.}
+        \resumeItem{Benchmarked and tuned Spark SQL query plans across 10+ TB financial datasets, resolving execution bottlenecks while preserving 100\% data integrity.}
+      \resumeItemListEnd
+ 
+    \resumeSubSubheading
+      {Summer Intern (BA3)}{Jun. 2022 -- Jul. 2022}
+      \resumeItemListStart
+        \resumeItem{Developed a Python tool that automated cross-system dataset reconciliation and generated structured discrepancy reports for millions of records, packaged in Docker and integrated into a Jenkins pipeline, enabling the team to spot data mismatches quickly and cut manual review effort.}
+      \resumeItemListEnd
+ 
+  \resumeSubHeadingListEnd
+ 
+%-----------PROJECTS-----------
+\section{Projects}
+  \resumeSubHeadingListStart
+ 
+    \resumeProjectHeading
+      {FrameSeek -- Multimodal Video Search Engine}
+      {Python, PyTorch, scikit-learn, Go, PostgreSQL, LangChain, LangGraph, Docker, AWS}
+      \resumeItemListStart
+        \resumeItem{Built an end-to-end multimodal search platform combining transcripts, OCR, and visual embeddings across 100+ hours of video; served results via a Go REST API at 500 ms p95 search latency.}
+        \resumeItem{Trained a logistic regression relevance scorer in scikit-learn, boosting query Success@5 by +8 percentage points over OCR/transcript baselines on 300 held-out queries (temporal IoU $\ge$ 0.5).}
+        \resumeItem{Engineered a fault-tolerant ingestion pipeline on AWS S3 and Batch with idempotent retries and stage checkpoints, achieving zero data loss across 100+ GB of raw video feeds.}
+        \resumeItem{Implemented conversational multi-turn retrieval using LangGraph and custom LangChain agents to resolve follow-up context and return timestamp-linked playback results.}
+      \resumeItemListEnd
+ 
+    \resumeProjectHeading
+      {StreamForge -- Distributed Real-Time Feature Store \& Pipeline}
+      {Go, Python, Apache Kafka, Redis, gRPC, Docker, PostgreSQL}
+      \resumeItemListStart
+        \resumeItem{Designed a distributed streaming pipeline in Go and Kafka processing 25,000+ events/sec to compute and serve real-time feature vectors for downstream ML inference models.}
+        \resumeItem{Implemented a Raft-based consensus mechanism in Go for fault-tolerant state replication across a 5-node cluster, ensuring consistent state updates during network partitions.}
+        \resumeItem{Exposed low-latency feature retrieval via gRPC microservices with Redis caching, sustaining $<$12 ms p99 read latency under simulated high concurrency.}
+        \resumeItem{Containerized the multi-service architecture with Docker Compose and configured Prometheus/Grafana alerting, maintaining 99.9\% uptime across cluster test runs.}
+      \resumeItemListEnd
+ 
+  \resumeSubHeadingListEnd
+ 
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Go, Java, TypeScript, C++, SQL, C, Groovy, Bash} \\
+     \textbf{Distributed Systems \& Data}{: Apache Spark, Apache Kafka, Hadoop (HDFS), PostgreSQL, Redis} \\
+     \textbf{ML \& Retrieval}{: PyTorch, TensorFlow, scikit-learn, LangChain, LangGraph, pandas, NumPy} \\
+     \textbf{Cloud \& DevOps}{: AWS (S3, Batch, EC2), Docker, Jenkins, CI/CD, AI-assisted development, Linux, Git, GitLab} \\
+     \textbf{Frameworks \& Protocols}{: Spring Boot, Django, React, Angular, Node.js, REST APIs, gRPC}
+    }}
+ \end{itemize}
+ \vspace{-4pt}
+ 
+%-----------PUBLICATIONS-----------
+\section[Publications]{Publications \hfill \normalfont\footnotesize\href{https://scholar.google.com/citations?user=E5l8ukMAAAAJ&hl=en&oi=ao}{[Google Scholar Profile]}}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     $\bullet$ \href{https://doi.org/10.1109/ICACCS57279.2023.10113049}{\textbf{A Novel Approach to Fall Detection System using Computer Vision.}} Co-author, ICACCS 2023. \\
+     $\bullet$ \href{https://www.researchgate.net/publication/376451168_Street_Smart_An_Intelligent_Traffic_Management_System}{\textbf{Street Smart: An Intelligent Traffic Management System.}} Co-author, INDIACom 2023.
+    }}
+ \end{itemize}
+ 
+\end{document}
+ 
