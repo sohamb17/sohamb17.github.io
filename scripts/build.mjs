@@ -1,7 +1,8 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { copyFile, readFile, writeFile } from 'node:fs/promises';
 import { build } from 'vite';
 
 await build();
+await copyFile('src/leetcode-stats.json', 'dist/leetcode-stats.json');
 await build({
   build: {
     ssr: 'src/entry-server.tsx',

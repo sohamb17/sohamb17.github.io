@@ -4,13 +4,36 @@ import { pathToFileURL } from 'node:url';
 const query = `query PortfolioStats($username: String!) {
   matchedUser(username: $username) {
     username
+    badges { name icon }
     submitStatsGlobal { acSubmissionNum { difficulty count } }
   }
-  userContestRanking(username: $username) { topPercentage }
+  userContestRanking(username: $username) { topPercentage rating attendedContestsCount badge { name } }
+  userContestRankingHistory(username: $username) { attended rating contest { title startTime } }
 }`;
+
+function officialBadgeIcon(icon) {
+  if (typeof icon !== 'string' || !icon) return null;
+  try {
+    const url = new URL(icon, 'https://leetcode.com');
+    return url.protocol === 'https:' && url.hostname === 'leetcode.com'
+      && !url.username && !url.password && !url.port
+      && url.pathname.startsWith('/static/images/badges/') ? url.href : null;
+  } catch { return null; }
+}
+
+function validBadge(badge) {
+  return badge == null || (['Knight', 'Guardian'].includes(badge.name)
+    && (badge.icon === null || officialBadgeIcon(badge.icon) === badge.icon));
+}
 
 export function validStats(value, username, now = new Date()) {
   return value?.username === username
+    && validBadge(value.badge)
+    && (value.rating == null || (Number.isFinite(value.rating) && value.rating >= 0))
+    && (value.contestCount == null || (Number.isSafeInteger(value.contestCount) && value.contestCount >= 0))
+    && (value.history == null || (Array.isArray(value.history) && value.history.every(row =>
+      Number.isFinite(row.rating) && row.rating >= 0 && typeof row.title === 'string'
+      && Number.isFinite(row.startTime) && row.startTime > 0)))
     && Number.isSafeInteger(value.solved) && value.solved >= 0
     && (value.topPercentage === null || (typeof value.topPercentage === 'number'
       && Number.isFinite(value.topPercentage) && value.topPercentage >= 0 && value.topPercentage <= 100))
@@ -24,10 +47,21 @@ export function parseStats(payload, username, now = new Date()) {
   const user = payload.data?.matchedUser;
   const contest = payload.data?.userContestRanking;
   if (contest === undefined) throw new Error('Missing contest data');
+  const badgeName = contest?.badge?.name;
+  const badge = ['Knight', 'Guardian'].includes(badgeName) ? {
+    name: badgeName,
+    icon: officialBadgeIcon(user?.badges?.find(item => item.name === badgeName)?.icon),
+  } : null;
   const stats = {
     username: user?.username,
     solved: user?.submitStatsGlobal?.acSubmissionNum?.find(row => row.difficulty === 'All')?.count,
     topPercentage: contest === null ? null : contest.topPercentage,
+    badge,
+    rating: contest?.rating ?? null,
+    contestCount: contest?.attendedContestsCount ?? null,
+    history: (payload.data?.userContestRankingHistory ?? []).filter(row => row.attended)
+      .map(row => ({ rating: row.rating, title: row.contest?.title, startTime: row.contest?.startTime }))
+      .sort((a, b) => b.startTime - a.startTime).slice(0, 3),
     updatedAt: now.toISOString(),
   };
   if (!validStats(stats, username, now)) throw new Error('Invalid or incomplete LeetCode statistics');
@@ -74,7 +108,7 @@ async function main() {
   const profileUrl = new URL(content.profile.leetcode);
   const username = /^\/u\/([^/]+)\/?$/.exec(profileUrl.pathname)?.[1];
   if (profileUrl.hostname !== 'leetcode.com' || !username) throw new Error('Invalid LeetCode profile URL');
-  const file = new URL('../public/leetcode-stats.json', import.meta.url);
+  const file = new URL('../src/leetcode-stats.json', import.meta.url);
   let previous = null;
   try { previous = JSON.parse(await readFile(file, 'utf8')); } catch { /* First run has no snapshot. */ }
   const result = await refreshStats({ username, previous, siteUrl: process.env.PORTFOLIO_URL });
