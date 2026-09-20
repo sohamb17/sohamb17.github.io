@@ -86,4 +86,7 @@
 
 .problem-solving{border-top:1px solid var(--line);padding-top:24px}.problem-solving .subheading{margin-bottom:14px}.problem-solving .text-link{min-height:44px}
 
-.leetcode-caption{margin-top:6px;color:var(--muted);font-size:.8125rem}.leetcode-caption .leetcode-updated{font-size:.75rem;margin-top:3px}
+.leetcode-caption{margin-top:6px;color:var(--muted);font-size:.8125rem}.leetcode-caption .leetcode-updated{font-size:.6875rem;line-height:1.5;margin-top:2px}
+@media screen{#about{padding-bottom:48px}}
+@media screen and (max-width:850px){#about{padding-bottom:37px}}
+@media screen and (max-width:680px){#about{padding-bottom:30px}}
