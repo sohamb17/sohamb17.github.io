@@ -1,0 +1,151 @@
+{
+  "UIUC": {
+    "src": "./brands/uiuc.svg",
+    "wide": false
+  },
+  "SPIT": {
+    "src": "./brands/spit.png",
+    "wide": false
+  },
+  "Google Scholar": {
+    "src": "./brands/scholar.ico",
+    "wide": false
+  },
+  "Python": {
+    "src": "./brands/python.png",
+    "wide": false
+  },
+  "Go": {
+    "src": "./brands/go.svg",
+    "wide": true
+  },
+  "Java": {
+    "src": "./brands/java.png",
+    "wide": false
+  },
+  "TypeScript": {
+    "src": "./brands/typescript.png",
+    "wide": false
+  },
+  "C++": {
+    "src": "./brands/cpp.png",
+    "wide": false
+  },
+  "Groovy": {
+    "src": "./brands/groovy.png",
+    "wide": false
+  },
+  "Bash": {
+    "src": "./brands/bash.svg",
+    "wide": false,
+    "surface": "dark"
+  },
+  "Apache Spark": {
+    "src": "./brands/spark.ico",
+    "wide": false
+  },
+  "Apache Kafka": {
+    "src": "./brands/kafka.png",
+    "wide": true
+  },
+  "Hadoop (HDFS)": {
+    "src": "./brands/hadoop.jpg",
+    "wide": true
+  },
+  "PostgreSQL": {
+    "src": "./brands/postgresql.png",
+    "wide": false
+  },
+  "Redis": {
+    "src": "./brands/redis.png",
+    "wide": false
+  },
+  "PyTorch": {
+    "src": "./brands/pytorch.webp",
+    "wide": false
+  },
+  "TensorFlow": {
+    "src": "./brands/tensorflow.png",
+    "wide": false
+  },
+  "scikit-learn": {
+    "src": "./brands/sklearn.svg",
+    "wide": true
+  },
+  "LangChain": {
+    "src": "./brands/langchain.png",
+    "wide": false
+  },
+  "LangGraph": {
+    "src": "./brands/langgraph.png",
+    "wide": false
+  },
+  "pandas": {
+    "src": "./brands/pandas.svg",
+    "wide": false
+  },
+  "NumPy": {
+    "src": "./brands/numpy.svg",
+    "wide": false
+  },
+  "AWS": {
+    "src": "./brands/aws.png",
+    "wide": false
+  },
+  "Docker": {
+    "src": "./brands/docker.png",
+    "wide": false
+  },
+  "Jenkins": {
+    "src": "./brands/jenkins.svg",
+    "wide": false
+  },
+  "Linux": {
+    "src": "./brands/linux.png",
+    "wide": false
+  },
+  "Git": {
+    "src": "./brands/git.svg",
+    "wide": false
+  },
+  "GitLab": {
+    "src": "./brands/gitlab.png",
+    "wide": false
+  },
+  "Spring Boot": {
+    "src": "./brands/spring.svg",
+    "wide": false
+  },
+  "Django": {
+    "src": "./brands/django.svg",
+    "wide": true
+  },
+  "React": {
+    "src": "./brands/react.png",
+    "wide": false
+  },
+  "Angular": {
+    "src": "./brands/angular.png",
+    "wide": false
+  },
+  "Node.js": {
+    "src": "./brands/node.svg",
+    "wide": false
+  },
+  "gRPC": {
+    "src": "./brands/grpc.png",
+    "wide": false
+  },
+  "IEEE": {
+    "src": "./brands/ieee.png",
+    "wide": true,
+    "surface": "dark"
+  },
+  "AWS (S3, Batch, EC2)": {
+    "src": "./brands/aws.png",
+    "wide": false
+  },
+  "Barclays": {
+    "src": "./brands/barclays.svg"
+  }
+}

@@ -56,8 +56,13 @@
       ]
     }
   ],
+  "employers": {
+    "barclays": { "name": "Barclays", "logo": "./brands/barclays.svg", "location": "Pune, India" },
+    "krinati": { "name": "Krinati Solutions", "logo": "./brands/krinati.png", "location": "Remote" }
+  },
   "experience": [
     {
+      "employer": "barclays",
       "title": "Software Engineer",
       "level": "BA4",
       "dates": "Apr. 2025 – Jul. 2026",
@@ -69,6 +74,7 @@
       ]
     },
     {
+      "employer": "barclays",
       "title": "Software Engineer",
       "level": "BA3",
       "dates": "Jul. 2023 – Mar. 2025",
@@ -80,6 +86,18 @@
       ]
     },
     {
+      "employer": "krinati",
+      "title": "Frontend Development Intern",
+      "level": "Internship",
+      "dates": "Jan. 2023 – Jun. 2023",
+      "summary": "Building responsive interfaces for production web applications.",
+      "bullets": [
+        "Built and enhanced frontend components in Angular and React for production web applications, integrating with backend services built in Django.",
+        "Collaborated with designers and backend engineers to deliver responsive, user-focused interfaces across the full feature-development lifecycle in a startup environment."
+      ]
+    },
+    {
+      "employer": "barclays",
       "title": "Summer Intern",
       "level": "BA3",
       "dates": "Jun. 2022 – Jul. 2022",

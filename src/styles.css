@@ -18,6 +18,57 @@
 @media(max-width:360px){.container,.header-inner{width:calc(100% - 32px)}.hero-actions{flex-direction:column;align-items:stretch}.hero-specialty{font-size:.9375rem}.project-grid,.project-results{padding-inline:15px}.project-topline{padding-inline:15px}.journey-card{padding:20px}.metrics strong{font-size:1.13rem}.contact-email{font-size:1rem}.school-monogram{width:42px;height:42px;font-size:.65rem}.contact-links{gap:18px}.back-top{flex-basis:100%;justify-content:flex-end}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 .hero{border-bottom:1px solid var(--line)}
+/* Original brand artwork sits on a neutral tile in both themes. */
+.asset-mark{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;flex:0 0 30px;padding:4px;background:#fff;border:1px solid #e1e5eb;border-radius:6px;vertical-align:middle}
+.asset-mark img{display:block;object-fit:contain;width:100%;height:100%}
+.asset-mark-wide{width:48px;flex-basis:48px}
+.asset-mark-dark{background:#075477;border-color:#075477}
+.tech-tags li{display:flex;align-items:center;gap:7px;padding:4px 8px 4px 4px;max-width:100%}
+.tech-tags li>span:last-child{overflow-wrap:anywhere}
+.tech-tags .asset-mark{width:24px;height:24px;flex-basis:24px;padding:3px;border:0;border-radius:3px}
+.tech-tags .asset-mark-wide{width:38px;flex-basis:38px}
+.journey-item h2{display:flex;align-items:center;gap:8px}
+.journey-item .asset-mark{width:26px;height:26px;flex-basis:26px;padding:3px;border-radius:4px}
+.about-grid{grid-template-columns:1fr;gap:44px}
+.education{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.education>.subheading,.skills>.subheading{grid-column:1/-1;margin-bottom:0}
+.education .school{margin:0;padding:24px;background:var(--soft);border:1px solid var(--line);border-radius:8px;align-items:flex-start;flex-direction:row}
+.school-logo{flex-shrink:0}
+.school-logo .asset-mark{width:56px;height:56px;flex-basis:56px;padding:8px;border-radius:8px}
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:27px 28px}
+.skills .skill-group{margin:0;min-width:0}
+.skill-group h4{font-size:.9375rem;margin-bottom:15px;line-height:1.5}
+.skill-tags{list-style:none;display:flex;flex-wrap:wrap;gap:9px 8px;margin:0;padding:0}
+.skill-tags li{display:flex;align-items:center;gap:8px;max-width:100%;padding:4px 9px 4px 4px;min-height:38px;border:1px solid var(--line);border-radius:6px;color:var(--ink);font-size:.8125rem;line-height:1.5}
+.skill-tags li:not(:has(.asset-mark)){padding-inline:11px;color:var(--muted)}
+.skill-tags li>span:last-child{overflow-wrap:anywhere}
+.skill-tags .asset-mark{border:0;width:26px;height:26px;flex-basis:26px;padding:3px;border-radius:3px}
+.skill-tags .asset-mark-wide{width:42px;flex-basis:42px}
+.publication{grid-template-columns:112px minmax(0,1fr) 35px}
+.paper-identity{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.paper-identity .asset-mark{width:104px;height:44px;flex-basis:auto;padding:9px 10px}
+@media(max-width:1100px){.skills{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.about-grid{grid-template-columns:1fr}.education .school{padding:20px;gap:14px}.school-logo .asset-mark{width:46px;height:46px;padding:6px}.education{gap:18px}}
+@media(max-width:680px){.about-grid{grid-template-columns:1fr;gap:35px}.education,.skills{grid-template-columns:1fr}.education{gap:16px}.education .school{padding:21px 18px}.education>.subheading,.skills>.subheading{margin-bottom:5px}.publication{grid-template-columns:minmax(0,1fr) 30px}.paper-identity{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px}.paper-identity .paper-year{flex-direction:row}.skill-tags li{font-size:.8125rem}}
+.brand-icon{position:relative;display:inline-flex;width:26px;height:24px;flex:0 0 26px;align-items:center;justify-content:center}
+.brand-icon img{display:block;width:100%;height:100%;object-fit:contain}
+.brand-icon .brand-dark{display:none}
+:root[data-theme=dark] .brand-icon .brand-light,.contact-section .brand-icon .brand-light{display:none}
+:root[data-theme=dark] .brand-icon .brand-dark,.contact-section .brand-icon .brand-dark{display:block}
+.utility-icon,.hero-socials .utility-icon,.contact-links .utility-icon{width:22px;height:22px;flex-shrink:0}
+.hero-socials{flex-wrap:wrap;gap:18px 24px}
+.hero-socials a{gap:9px;min-height:30px}
+.link-label{display:inline-flex;align-items:center;gap:10px}
+.contact-email{gap:12px;max-width:100%}
+.contact-email>span{min-width:0;overflow-wrap:anywhere}
+.role-employer{display:flex;align-items:center;gap:14px;margin-bottom:17px}
+.employer-logo{display:grid;place-items:center;flex:0 0 56px;width:56px;height:56px;border:1px solid #e1e5eb;border-radius:10px;background:#fff;padding:10px}
+.employer-logo img{display:block;width:100%;height:100%;object-fit:contain}
+.employer-logo-krinati{flex-basis:96px;width:96px;padding:10px;background:#17243b;border-color:#17243b}
+.employer-name{font-size:.9375rem;font-weight:750;line-height:1.5;color:var(--ink)}
+.employer-location{font-size:.75rem;line-height:1.5;color:var(--muted);margin-top:3px}
+.role-heading{flex-wrap:wrap;gap:8px 13px}
+@media(max-width:680px){.hero-socials{gap:15px 19px}.hero-socials a{gap:7px}.contact-links{flex-wrap:wrap;column-gap:20px}.contact-links a{flex:1 0 auto;justify-content:flex-start}.contact-links a>svg{display:none}.role-employer{margin-block:7px 17px}}
 .hero-identity{display:flex;align-items:center;gap:20px}.portrait-frame{position:relative;width:96px;height:96px;flex-shrink:0;overflow:hidden;border-radius:22px;background:var(--soft);border:1px solid var(--line)}.portrait-frame img{position:absolute;width:350%;height:auto;max-width:none;left:50%;top:0;transform:translate(-48%,-29%)}.portrait-location{color:var(--muted);font-size:.8125rem;margin-top:9px}.hero-identity>div:last-child{min-width:0}.hero-identity .eyebrow{flex-wrap:wrap;gap:9px}@media(max-width:680px){.hero-identity{gap:16px}.portrait-frame{width:80px;height:80px;border-radius:18px}.hero-identity .orange-rule{width:18px}.portrait-location{font-size:.75rem}}
 .hero-availability{color:var(--accent);font-size:.875rem;font-weight:650;margin-top:19px;line-height:1.6}
 .hero-actions{margin-top:22px}
