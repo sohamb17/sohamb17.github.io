@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import content from './content.json';
 import brandAssets from './brand-assets.json';
+import savedLeetCodeStats from '../public/leetcode-stats.json';
 
 const { profile, projects, experience, education, skills, publications } = content;
 const employers: Record<string, { name: string; logo: string; location: string }> = content.employers;
@@ -32,6 +33,15 @@ function BrandMark({ name }: { name: string }) {
   const asset = assets[name];
   if (!asset) return null;
   return <span className={`asset-mark${asset.wide ? ' asset-mark-wide' : ''}${asset.surface === 'dark' ? ' asset-mark-dark' : ''}`} aria-hidden="true"><img src={asset.src} alt="" width="32" height="32" loading="lazy" /></span>;
+}
+
+function LeetCodeCaption() {
+  const stats = savedLeetCodeStats as { username: string; solved: number; topPercentage: number | null; updatedAt: string } | null;
+  const username = new URL(profile.leetcode).pathname.split('/')[2];
+  if (!stats || stats.username !== username) return null;
+  const percent = stats.topPercentage;
+  const contestText = percent === null ? '' : `Top ${percent < 0.1 ? '<0.1' : percent.toFixed(1)}% in contests · `;
+  return <div className="leetcode-caption"><p>{contestText}{stats.solved.toLocaleString('en-US')} problems solved</p><p className="leetcode-updated">Updated <time dateTime={stats.updatedAt}>{new Date(stats.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time></p></div>;
 }
 
 function Technology({ name }: { name: string }) {
@@ -117,9 +127,9 @@ export default function App() {
           <div className="journey-top"><span className="mono">AT A GLANCE</span><span className="journey-mark" aria-hidden="true">[ sb ]</span></div>
           <p className="journey-title">Built on experience.<br /><span>Driven by curiosity.</span></p>
           <div className="journey-line">
-            <div className="journey-item current"><span className="journey-node" /><div><span className="mono">2026 — 2028</span><h2><BrandMark name="UIUC" /><span>University of Illinois</span></h2><p>Master of Computer Science</p><span className="journey-note">Urbana-Champaign · Expected May 2028</span></div></div>
+            <div className="journey-item current"><span className="journey-node" /><div><span className="mono">2026 — 2028</span><h2><BrandMark name="UIUC" /><span>University of Illinois Urbana-Champaign</span></h2><p>Master of Computer Science</p><span className="journey-note">Urbana-Champaign · Expected May 2028</span></div></div>
             <div className="journey-item"><span className="journey-node" /><div><span className="mono">2023 — 2026</span><h2><BrandMark name="Barclays" /><span>Barclays</span></h2><p>Software Engineer · BA3 → BA4</p><span className="journey-note">Pune, India</span></div></div>
-            <div className="journey-item"><span className="journey-node" /><div><span className="mono">2019 — 2023</span><h2><BrandMark name="SPIT" /><span>Sardar Patel Institute</span></h2><p>B.Tech in Computer Engineering</p><span className="journey-note">Mumbai, India</span></div></div>
+            <div className="journey-item"><span className="journey-node" /><div><span className="mono">2019 — 2023</span><h2><BrandMark name="SPIT" /><span>Sardar Patel Institute of Technology</span></h2><p>B.Tech in Computer Engineering</p><span className="journey-note">Mumbai, India</span></div></div>
           </div>
           <div className="location"><svg width="15" height="18" viewBox="0 0 20 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M18 9c0 6-8 13-8 13S2 15 2 9a8 8 0 1 1 16 0Z"/><circle cx="10" cy="9" r="2.5"/></svg>{profile.location}</div>
         </aside>
@@ -141,7 +151,7 @@ export default function App() {
 
       <section className="section container" id="about">
         <SectionTitle number="03" eyebrow="BACKGROUND & TOOLKIT" title="A foundation to build on." />
-        <div className="about-grid"><div className="education"><h3 className="subheading">Education</h3>{education.map(school => <article key={school.shortName} className="school"><div className="school-logo"><BrandMark name={school.shortName} /></div><div><h4>{school.school}</h4><p>{school.degree}</p><span className="school-dates">{school.dates}</span><span className="school-detail mono">{school.detail}</span></div></article>)}</div><div className="skills"><h3 className="subheading">Tools I work with</h3>{skills.map(group => <div className="skill-group" key={group.name}><h4>{group.name}</h4><ul className="skill-tags" aria-label={group.name}>{group.items.map(item => <Technology key={item} name={item} />)}</ul></div>)}</div></div>
+        <div className="about-grid"><div className="education"><h3 className="subheading">Education</h3>{education.map(school => <article key={school.shortName} className="school"><div className="school-logo"><BrandMark name={school.shortName} /></div><div><h4>{school.school}</h4><p>{school.degree}</p><span className="school-dates">{school.dates}</span><span className="school-detail mono">{school.detail}</span></div></article>)}</div><div className="skills"><h3 className="subheading">Tools I work with</h3>{skills.map(group => <div className="skill-group" key={group.name}><h4>{group.name}</h4><ul className="skill-tags" aria-label={group.name}>{group.items.map(item => <Technology key={item} name={item} />)}</ul></div>)}</div><div className="problem-solving"><h3 className="subheading">Problem solving</h3><a className="text-link" href={profile.leetcode}><BrandMark name="LeetCode" />LeetCode <Arrow diagonal /></a><LeetCodeCaption /></div></div>
       </section>
 
       <section className="section research-section container" id="research">

@@ -147,5 +147,8 @@
   },
   "Barclays": {
     "src": "./brands/barclays.svg"
+  },
+  "LeetCode": {
+    "src": "./brands/leetcode.svg"
   }
 }

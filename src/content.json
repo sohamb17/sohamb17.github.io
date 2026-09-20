@@ -1,7 +1,10 @@
 {
   "profile": {
     "name": "Soham Belurgikar",
-    "portrait": { "src": "./images/soham-portrait.jpg", "alt": "Soham Belurgikar smiling outdoors" },
+    "portrait": {
+      "src": "./images/soham-portrait.jpg",
+      "alt": "Soham Belurgikar smiling outdoors"
+    },
     "location": "Champaign, Illinois",
     "email": "sohamsb2@illinois.edu",
     "github": "https://github.com/sohamb17",
@@ -10,7 +13,8 @@
     "role": "Software Engineer",
     "specialty": "Distributed systems & ML infrastructure",
     "availability": "Seeking Summer 2027 internships",
-    "intro": "I build distributed systems, data platforms, and intelligent search. Currently pursuing my Master of Computer Science at UIUC, after three years engineering data systems at Barclays."
+    "intro": "I build distributed systems, data platforms, and intelligent search. Currently pursuing my Master of Computer Science at UIUC, after three years engineering data systems at Barclays.",
+    "leetcode": "https://leetcode.com/u/sohamb17/"
   },
   "projects": [
     {
@@ -20,11 +24,30 @@
       "title": "Find the moment. Not just the video.",
       "resumeTitle": "Multimodal Video Search Engine",
       "description": "A search engine that brings together what’s said, written, and seen in a video. Ask a question, refine it in conversation, and jump straight to the relevant moment.",
-      "technologies": ["Python", "PyTorch", "scikit-learn", "Go", "PostgreSQL", "LangChain", "LangGraph", "Docker", "AWS"],
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "scikit-learn",
+        "Go",
+        "PostgreSQL",
+        "LangChain",
+        "LangGraph",
+        "Docker",
+        "AWS"
+      ],
       "metrics": [
-        { "value": "100+", "unit": "hours of indexed video" },
-        { "value": "500 ms", "unit": "p95 search latency" },
-        { "value": "+8 pp", "unit": "query Success@5" }
+        {
+          "value": "100+",
+          "unit": "hours of indexed video"
+        },
+        {
+          "value": "500 ms",
+          "unit": "p95 search latency"
+        },
+        {
+          "value": "+8 pp",
+          "unit": "query Success@5"
+        }
       ],
       "detail": "A learned relevance scorer improved Success@5 over OCR/transcript baselines on 300 held-out queries (temporal IoU ≥ 0.5). Checkpointed AWS ingestion handled 100+ GB of raw video with zero data loss.",
       "bullets": [
@@ -41,11 +64,28 @@
       "title": "From live events to ready-to-use features.",
       "resumeTitle": "Distributed Real-Time Feature Store & Pipeline",
       "description": "A distributed streaming pipeline that computes and serves fresh feature vectors for ML inference, with replicated state and low-latency retrieval.",
-      "technologies": ["Go", "Python", "Apache Kafka", "Redis", "gRPC", "Docker", "PostgreSQL"],
+      "technologies": [
+        "Go",
+        "Python",
+        "Apache Kafka",
+        "Redis",
+        "gRPC",
+        "Docker",
+        "PostgreSQL"
+      ],
       "metrics": [
-        { "value": "25k+", "unit": "events per second" },
-        { "value": "<12 ms", "unit": "p99 feature reads*" },
-        { "value": "5 nodes", "unit": "Raft replication" }
+        {
+          "value": "25k+",
+          "unit": "events per second"
+        },
+        {
+          "value": "<12 ms",
+          "unit": "p99 feature reads*"
+        },
+        {
+          "value": "5 nodes",
+          "unit": "Raft replication"
+        }
       ],
       "detail": "*Read latency measured under simulated high concurrency. Docker Compose and Prometheus/Grafana monitoring supported 99.9% uptime across cluster test runs.",
       "bullets": [
@@ -57,8 +97,16 @@
     }
   ],
   "employers": {
-    "barclays": { "name": "Barclays", "logo": "./brands/barclays.svg", "location": "Pune, India" },
-    "krinati": { "name": "Krinati Solutions", "logo": "./brands/krinati.png", "location": "Remote" }
+    "barclays": {
+      "name": "Barclays",
+      "logo": "./brands/barclays.svg",
+      "location": "Pune, India"
+    },
+    "krinati": {
+      "name": "Krinati Solutions",
+      "logo": "./brands/krinati.png",
+      "location": "Remote"
+    }
   },
   "experience": [
     {
@@ -108,18 +156,98 @@
     }
   ],
   "education": [
-    { "school": "University of Illinois Urbana-Champaign", "shortName": "UIUC", "degree": "Master of Computer Science", "dates": "Aug. 2026 – May 2028 (Expected)", "location": "Urbana-Champaign, IL", "detail": "MCS · In progress" },
-    { "school": "Sardar Patel Institute of Technology", "shortName": "SPIT", "degree": "B.Tech in Computer Engineering", "dates": "Aug. 2019 – May 2023", "location": "Mumbai, India", "detail": "CGPA: 9.21 / 10.0" }
+    {
+      "school": "University of Illinois Urbana-Champaign",
+      "shortName": "UIUC",
+      "degree": "Master of Computer Science",
+      "dates": "Aug. 2026 – May 2028 (Expected)",
+      "location": "Urbana-Champaign, IL",
+      "detail": "MCS · In progress"
+    },
+    {
+      "school": "Sardar Patel Institute of Technology",
+      "shortName": "SPIT",
+      "degree": "B.Tech in Computer Engineering",
+      "dates": "Aug. 2019 – May 2023",
+      "location": "Mumbai, India",
+      "detail": "CGPA: 9.21 / 10.0"
+    }
   ],
   "skills": [
-    { "name": "Languages", "items": ["Python", "Go", "Java", "TypeScript", "C++", "SQL", "C", "Groovy", "Bash"] },
-    { "name": "Distributed systems & data", "items": ["Apache Spark", "Apache Kafka", "Hadoop (HDFS)", "PostgreSQL", "Redis"] },
-    { "name": "ML & retrieval", "items": ["PyTorch", "TensorFlow", "scikit-learn", "LangChain", "LangGraph", "pandas", "NumPy"] },
-    { "name": "Cloud & DevOps", "items": ["AWS (S3, Batch, EC2)", "Docker", "Jenkins", "CI/CD", "AI-assisted development", "Linux", "Git", "GitLab"] },
-    { "name": "Frameworks & protocols", "items": ["Spring Boot", "Django", "React", "Angular", "Node.js", "REST APIs", "gRPC"] }
+    {
+      "name": "Languages",
+      "items": [
+        "Python",
+        "Go",
+        "Java",
+        "TypeScript",
+        "C++",
+        "SQL",
+        "C",
+        "Groovy",
+        "Bash"
+      ]
+    },
+    {
+      "name": "Distributed systems & data",
+      "items": [
+        "Apache Spark",
+        "Apache Kafka",
+        "Hadoop (HDFS)",
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    {
+      "name": "ML & retrieval",
+      "items": [
+        "PyTorch",
+        "TensorFlow",
+        "scikit-learn",
+        "LangChain",
+        "LangGraph",
+        "pandas",
+        "NumPy"
+      ]
+    },
+    {
+      "name": "Cloud & DevOps",
+      "items": [
+        "AWS (S3, Batch, EC2)",
+        "Docker",
+        "Jenkins",
+        "CI/CD",
+        "AI-assisted development",
+        "Linux",
+        "Git",
+        "GitLab"
+      ]
+    },
+    {
+      "name": "Frameworks & protocols",
+      "items": [
+        "Spring Boot",
+        "Django",
+        "React",
+        "Angular",
+        "Node.js",
+        "REST APIs",
+        "gRPC"
+      ]
+    }
   ],
   "publications": [
-    { "title": "A Novel Approach to Fall Detection System using Computer Vision", "venue": "ICACCS 2023", "role": "Co-author", "url": "https://doi.org/10.1109/ICACCS57279.2023.10113049" },
-    { "title": "Street Smart: An Intelligent Traffic Management System", "venue": "INDIACom 2023", "role": "Co-author", "url": "https://www.researchgate.net/publication/376451168_Street_Smart_An_Intelligent_Traffic_Management_System" }
+    {
+      "title": "A Novel Approach to Fall Detection System using Computer Vision",
+      "venue": "ICACCS 2023",
+      "role": "Co-author",
+      "url": "https://doi.org/10.1109/ICACCS57279.2023.10113049"
+    },
+    {
+      "title": "Street Smart: An Intelligent Traffic Management System",
+      "venue": "INDIACom 2023",
+      "role": "Co-author",
+      "url": "https://www.researchgate.net/publication/376451168_Street_Smart_An_Intelligent_Traffic_Management_System"
+    }
   ]
 }

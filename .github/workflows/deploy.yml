@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '17 12 * * *'
 
 permissions:
   contents: read
@@ -15,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -25,6 +30,15 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
+      - name: Read Pages URL for saved statistics
+        id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+      - name: Refresh LeetCode statistics
+        run: npm run refresh:leetcode
+        env:
+          PORTFOLIO_URL: ${{ steps.pages.outputs.base_url }}
+      - name: Test statistics refresh and fallback
+        run: npm run test:leetcode
       - name: Build and prerender
         run: npm run build
       - name: Upload static website

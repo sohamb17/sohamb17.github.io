@@ -62,3 +62,7 @@ The Git logo is by Jason Long, licensed under [Creative Commons Attribution 3.0]
 Logo artwork is not recolored or distorted. The white IEEE mark uses a dark tile in both themes. Adjacent text provides the accessible label; decorative images have empty alternative text. C, SQL, REST APIs, CI/CD, and AI-assisted development remain text-only because they do not have a single official brand asset appropriate to these labels.
 
 The mapping from content labels to assets is in `src/brand-assets.json`. Keep source information here when adding or replacing a logo.
+
+## LeetCode
+
+`leetcode.svg` is the official light-theme symbol extracted from the navigation logo on [LeetCode](https://leetcode.com/u/sohamb17/) on 20 September 2026. Original paths and colors are preserved; website-specific CSS classes were omitted. It identifies the linked personal profile and is shown on a white tile in both themes. LeetCode retains ownership of its mark.

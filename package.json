@@ -7,7 +7,9 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && node scripts/build.mjs",
     "preview": "vite preview --host 127.0.0.1",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "refresh:leetcode": "node scripts/leetcode.mjs",
+    "test:leetcode": "node --test scripts/leetcode.test.mjs"
   },
   "engines": {
     "node": ">=22.12.0"
