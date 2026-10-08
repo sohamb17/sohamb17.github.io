@@ -1,5 +1,5 @@
 \documentclass[letterpaper,10pt]{article}
- 
+
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
@@ -10,75 +10,76 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
- 
+
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
- 
+
 % Precision margins for guaranteed 1-page fit
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1.0in}
 \addtolength{\topmargin}{-0.7in}
 \addtolength{\textheight}{1.35in}
- 
+
 \urlstyle{same}
- 
+
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
- 
+
 % Tight section formatting
 \titleformat{\section}{
   \vspace{-8pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
- 
+
 % Custom commands - Linear ATS text flow with zero bloat
 \newcommand{\resumeItem}[1]{
   \item\small{
     {#1 \vspace{-2pt}}
   }
 }
- 
+
 \newcommand{\resumeSubheading}[4]{
   \vspace{-3pt}\item
     \textbf{#1} \hfill #2 \\
     \textit{\small#3} \hfill \textit{\small #4}
     \vspace{-4pt}
 }
- 
+
 \newcommand{\resumeSubSubheading}[2]{
   \vspace{-2pt}\item
     \textit{\small#1} \hfill \textit{\small #2}
     \vspace{-4pt}
 }
- 
+
 \newcommand{\resumeProjectHeading}[2]{
   \vspace{-3pt}\item
     \textbf{#1} \\
     \textit{\small#2}
     \vspace{-4pt}
 }
- 
+
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
- 
+
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-2pt}}
 \newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
- 
+
 \begin{document}
- 
+
 %----------HEADING----------
 \begin{center}
     \textbf{\Huge \scshape Soham Belurgikar} \\ \vspace{2pt}
-    \small Champaign, IL $|$ \href{mailto:sohamsb2@illinois.edu}{\underline{sohamsb2@illinois.edu}} $|$
+    \small Champaign, IL $|$ +1 (217) 402-1504 $|$ \href{mailto:sohamsb2@illinois.edu}{\underline{sohamsb2@illinois.edu}} $|$
     \href{https://linkedin.com/in/sohamb17}{\underline{linkedin.com/in/sohamb17}} $|$
-    \href{https://github.com/sohamb17}{\underline{github.com/sohamb17}}
+    \href{https://github.com/sohamb17}{\underline{github.com/sohamb17}} $|$
+    \href{https://sohamb17.github.io/}{\underline{sohamb17.github.io}}
 \end{center}
- 
+
 %-----------EDUCATION-----------
 \section{Education}
   \resumeSubHeadingListStart
@@ -87,14 +88,14 @@
       {Master of Computer Science (MCS)}{Aug. 2026 -- May 2028 (Expected)}
     \vspace{-2pt}
     \resumeSubheading
-      {Sardar Patel Institute of Technology}{Mumbai, India}
+      {Sardar Patel Institute of Technology - University of Mumbai}{Mumbai, India}
       {B.Tech in Computer Engineering; CGPA: 9.21/10.0}{Aug. 2019 -- May 2023}
   \resumeSubHeadingListEnd
- 
+
 %-----------EXPERIENCE-----------
 \section{Experience}
   \resumeSubHeadingListStart
- 
+
     \resumeSubheading
       {Barclays}{Pune, India}
       {Software Engineer (BA4)}{Apr. 2025 -- Jul. 2026}
@@ -103,7 +104,7 @@
         \resumeItem{Architected an on-demand synthetic data platform using React, Spring Boot, and Python, generating 1M+ records to enable load testing without production PII.}
         \resumeItem{Automated data reconciliation and validation pipelines across staging and production, reducing manual verification effort by approximately 40\%.}
       \resumeItemListEnd
- 
+
     \resumeSubSubheading
       {Software Engineer (BA3)}{Jul. 2023 -- Mar. 2025}
       \resumeItemListStart
@@ -111,54 +112,54 @@
         \resumeItem{Engineered automated CI/CD pipelines via Jenkins and Groovy, cutting deployment cycle times by 35\% across 15+ distributed artifacts and staging environments.}
         \resumeItem{Benchmarked and tuned Spark SQL query plans across 10+ TB financial datasets, resolving execution bottlenecks while preserving 100\% data integrity.}
       \resumeItemListEnd
- 
+
     \resumeSubSubheading
       {Summer Intern (BA3)}{Jun. 2022 -- Jul. 2022}
       \resumeItemListStart
         \resumeItem{Developed a Python tool that automated cross-system dataset reconciliation and generated structured discrepancy reports for millions of records, packaged in Docker and integrated into a Jenkins pipeline, enabling the team to spot data mismatches quickly and cut manual review effort.}
       \resumeItemListEnd
- 
+
   \resumeSubHeadingListEnd
- 
+
 %-----------PROJECTS-----------
 \section{Projects}
   \resumeSubHeadingListStart
- 
+
     \resumeProjectHeading
-      {FrameSeek -- Multimodal Video Search Engine}
-      {Python, PyTorch, scikit-learn, Go, PostgreSQL, LangChain, LangGraph, Docker, AWS}
+      {FrameSeek -- Multimodal Video Search Engine \hfill \normalfont\small \href{https://github.com/sohamb17/frameseek}{\underline{GitHub}} $|$ \href{https://sohamb17.github.io/frameseek/}{\underline{Demo}}}
+      {Python, Go, FastAPI, React, TypeScript, PostgreSQL, pgvector, LangChain, LangGraph, Docker}
       \resumeItemListStart
-        \resumeItem{Built an end-to-end multimodal search platform combining transcripts, OCR, and visual embeddings across 100+ hours of video; served results via a Go REST API at 500 ms p95 search latency.}
-        \resumeItem{Trained a logistic regression relevance scorer in scikit-learn, boosting query Success@5 by +8 percentage points over OCR/transcript baselines on 300 held-out queries (temporal IoU $\ge$ 0.5).}
-        \resumeItem{Engineered a fault-tolerant ingestion pipeline on AWS S3 and Batch with idempotent retries and stage checkpoints, achieving zero data loss across 100+ GB of raw video feeds.}
-        \resumeItem{Implemented conversational multi-turn retrieval using LangGraph and custom LangChain agents to resolve follow-up context and return timestamp-linked playback results.}
+        \resumeItem{Built a multimodal video search engine that indexes speech (Whisper), on screen text (Tesseract OCR) and frames (OpenCLIP) into timestamped clips across five retrieval channels, with LangGraph conversational search over a custom LangChain retriever.}
+        \resumeItem{Engineered resumable ingestion on PostgreSQL with job leases, attempt generations, checksummed stage manifests and atomically published index versions, verified by worker crash, duplicate submission and failed reindex tests.}
+        \resumeItem{Developed a Go API with streaming uploads, SSRF safe URL import, idempotent jobs and signed media URLs in front of a Python FastAPI retrieval service on pgvector and PostgreSQL full text search.}
+        \resumeItem{Trained a scikit-learn relevance scorer on 25 cross modal features that raised top 1 success on held out videos from 26\% to 48\% over fixed rank fusion, measured on 79 AI written labels with a random author audit.}
       \resumeItemListEnd
- 
+
     \resumeProjectHeading
-      {StreamForge -- Distributed Real-Time Feature Store \& Pipeline}
-      {Go, Python, Apache Kafka, Redis, gRPC, Docker, PostgreSQL}
+      {StreamForge -- Distributed Real-Time Feature Store \& Pipeline \hfill \normalfont\small \href{https://github.com/sohamb17/streamforge}{\underline{GitHub}} $|$ \href{https://sohamb17.github.io/streamforge/}{\underline{Live Demo}}}
+      {Go, Apache Kafka, gRPC, Redis, PostgreSQL, Python, Docker, Prometheus, React}
       \resumeItemListStart
-        \resumeItem{Designed a distributed streaming pipeline in Go and Kafka processing 25,000+ events/sec to compute and serve real-time feature vectors for downstream ML inference models.}
-        \resumeItem{Implemented a Raft-based consensus mechanism in Go for fault-tolerant state replication across a 5-node cluster, ensuring consistent state updates during network partitions.}
-        \resumeItem{Exposed low-latency feature retrieval via gRPC microservices with Redis caching, sustaining $<$12 ms p99 read latency under simulated high concurrency.}
-        \resumeItem{Containerized the multi-service architecture with Docker Compose and configured Prometheus/Grafana alerting, maintaining 99.9\% uptime across cluster test runs.}
+        \resumeItem{Built a real time feature store in Go and Kafka computing per zone ML features from NYC taxi trips; sustained 250,000 synthetic events/sec for 10 minutes with flat consumer lag and 63 ms p99 freshness on a 2 vCPU host.}
+        \resumeItem{Implemented Raft from scratch in Go for a 5 node online store with PreVote, ReadIndex, snapshots and an fsynced WAL; verified linearizability with Porcupine under leader kills, pauses and network partitions, with 381 ms median failover.}
+        \resumeItem{Achieved effectively once processing by committing Kafka offsets and window state atomically with feature updates in each Raft entry, yielding 0 mismatches against a batch oracle across 1M trips under repeated worker crashes and duplicate redelivery.}
+        \resumeItem{Served features over gRPC with deadlines at 13 ms p99 for linearizable reads under 1,000 req/s open loop load, and added request coalescing that cut Redis cached p99 at 2,000 req/s from 33 ms to 22 ms.}
       \resumeItemListEnd
- 
+
   \resumeSubHeadingListEnd
- 
+
 %-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}{: Python, Go, Java, TypeScript, C++, SQL, C, Groovy, Bash} \\
-     \textbf{Distributed Systems \& Data}{: Apache Spark, Apache Kafka, Hadoop (HDFS), PostgreSQL, Redis} \\
+     \textbf{Distributed Systems \& Data}{: Apache Spark, Apache Hive, Apache Kafka, Hadoop (HDFS), PostgreSQL, pgvector, Redis} \\
      \textbf{ML \& Retrieval}{: PyTorch, TensorFlow, scikit-learn, LangChain, LangGraph, pandas, NumPy} \\
-     \textbf{Cloud \& DevOps}{: AWS (S3, Batch, EC2), Docker, Jenkins, CI/CD, AI-assisted development, Linux, Git, GitLab} \\
-     \textbf{Frameworks \& Protocols}{: Spring Boot, Django, React, Angular, Node.js, REST APIs, gRPC}
+     \textbf{Cloud \& DevOps}{: AWS (S3, Batch, EC2), Docker, Kubernetes, Jenkins, CI/CD, AI coding assistants (GitHub Copilot, Cursor, Claude Code, OpenAI Codex, Gemini), Linux, Git, GitLab} \\
+     \textbf{Frameworks \& Protocols}{: Spring Boot, FastAPI, Django, React, Angular, Node.js, REST APIs, gRPC}
     }}
  \end{itemize}
  \vspace{-4pt}
- 
+
 %-----------PUBLICATIONS-----------
 \section[Publications]{Publications \hfill \normalfont\footnotesize\href{https://scholar.google.com/citations?user=E5l8ukMAAAAJ&hl=en&oi=ao}{[Google Scholar Profile]}}
  \begin{itemize}[leftmargin=0.15in, label={}]
@@ -167,6 +168,5 @@
      $\bullet$ \href{https://www.researchgate.net/publication/376451168_Street_Smart_An_Intelligent_Traffic_Management_System}{\textbf{Street Smart: An Intelligent Traffic Management System.}} Co-author, INDIACom 2023.
     }}
  \end{itemize}
- 
+
 \end{document}
- 

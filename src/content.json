@@ -26,35 +26,37 @@
       "description": "A search engine that brings together what’s said, written, and seen in a video. Ask a question, refine it in conversation, and jump straight to the relevant moment.",
       "technologies": [
         "Python",
-        "PyTorch",
-        "scikit-learn",
         "Go",
+        "FastAPI",
+        "React",
+        "TypeScript",
         "PostgreSQL",
+        "pgvector",
+        "scikit-learn",
         "LangChain",
         "LangGraph",
-        "Docker",
-        "AWS"
+        "Docker"
       ],
       "metrics": [
         {
-          "value": "100+",
-          "unit": "hours of indexed video"
+          "value": "5",
+          "unit": "retrieval channels fused"
         },
         {
-          "value": "500 ms",
-          "unit": "p95 search latency"
+          "value": "48%",
+          "unit": "top-1 success, up from 26%"
         },
         {
-          "value": "+8 pp",
-          "unit": "query Success@5"
+          "value": "35/35",
+          "unit": "scripted conversation turns passed"
         }
       ],
-      "detail": "A learned relevance scorer improved Success@5 over OCR/transcript baselines on 300 held-out queries (temporal IoU ≥ 0.5). Checkpointed AWS ingestion handled 100+ GB of raw video with zero data loss.",
+      "detail": "Top-1 success measured once on 27 held-out test queries, using 79 AI-written labels audited by a random 20-label author spot check. The learned scorer beats fixed rank fusion but not transcript-only semantic search at top-1 (56%), and ties it at top-5 (67%). Runs locally with Docker Compose; no cloud deployment yet.",
       "bullets": [
-        "Built an end-to-end multimodal search platform combining transcripts, OCR, and visual embeddings across 100+ hours of video; served results via a Go REST API at 500 ms p95 search latency.",
-        "Trained a logistic regression relevance scorer in scikit-learn, boosting query Success@5 by +8 percentage points over OCR/transcript baselines on 300 held-out queries (temporal IoU ≥ 0.5).",
-        "Engineered a fault-tolerant ingestion pipeline on AWS S3 and Batch with idempotent retries and stage checkpoints, achieving zero data loss across 100+ GB of raw video feeds.",
-        "Implemented conversational multi-turn retrieval using LangGraph and custom LangChain agents to resolve follow-up context and return timestamp-linked playback results."
+        "Built a multimodal video search engine that indexes speech (Whisper), on screen text (Tesseract OCR) and frames (OpenCLIP) into timestamped clips across five retrieval channels, with LangGraph conversational search over a custom LangChain retriever.",
+        "Engineered resumable ingestion on PostgreSQL with job leases, attempt generations, checksummed stage manifests and atomically published index versions, verified by worker crash, duplicate submission and failed reindex tests.",
+        "Developed a Go API with streaming uploads, SSRF safe URL import, idempotent jobs and signed media URLs in front of a Python FastAPI retrieval service on pgvector and PostgreSQL full text search.",
+        "Trained a scikit-learn relevance scorer on 25 cross modal features that raised top 1 success on held out videos from 26% to 48% over fixed rank fusion, measured on 79 AI written labels with a random author audit."
       ]
     },
     {
@@ -66,33 +68,35 @@
       "description": "A distributed streaming pipeline that computes and serves fresh feature vectors for ML inference, with replicated state and low-latency retrieval.",
       "technologies": [
         "Go",
-        "Python",
         "Apache Kafka",
-        "Redis",
         "gRPC",
+        "Redis",
+        "PostgreSQL",
+        "Python",
         "Docker",
-        "PostgreSQL"
+        "Prometheus",
+        "React"
       ],
       "metrics": [
         {
-          "value": "25k+",
-          "unit": "events per second"
+          "value": "250k",
+          "unit": "synthetic events per second"
         },
         {
-          "value": "<12 ms",
-          "unit": "p99 feature reads*"
+          "value": "13 ms",
+          "unit": "p99 linearizable reads"
         },
         {
-          "value": "5 nodes",
-          "unit": "Raft replication"
+          "value": "381 ms",
+          "unit": "median leader failover"
         }
       ],
-      "detail": "*Read latency measured under simulated high concurrency. Docker Compose and Prometheus/Grafana monitoring supported 99.9% uptime across cluster test runs.",
+      "detail": "All numbers from one shared 2 vCPU host. 250,000 synthetic events/sec held for 10 minutes at 63 ms p99 freshness; linearizable reads at 13 ms p99 under 1,000 req/s open loop load. Linearizability checked with Porcupine under leader kills, pauses and network partitions.",
       "bullets": [
-        "Designed a distributed streaming pipeline in Go and Kafka processing 25,000+ events/sec to compute and serve real-time feature vectors for downstream ML inference models.",
-        "Implemented a Raft-based consensus mechanism in Go for fault-tolerant state replication across a 5-node cluster, ensuring consistent state updates during network partitions.",
-        "Exposed low-latency feature retrieval via gRPC microservices with Redis caching, sustaining <12 ms p99 read latency under simulated high concurrency.",
-        "Containerized the multi-service architecture with Docker Compose and configured Prometheus/Grafana alerting, maintaining 99.9% uptime across cluster test runs."
+        "Built a real time feature store in Go and Kafka computing per zone ML features from NYC taxi trips; sustained 250,000 synthetic events/sec for 10 minutes with flat consumer lag and 63 ms p99 freshness on a 2 vCPU host.",
+        "Implemented Raft from scratch in Go for a 5 node online store with PreVote, ReadIndex, snapshots and an fsynced WAL; verified linearizability with Porcupine under leader kills, pauses and network partitions, with 381 ms median failover.",
+        "Achieved effectively once processing by committing Kafka offsets and window state atomically with feature updates in each Raft entry, yielding 0 mismatches against a batch oracle across 1M trips under repeated worker crashes and duplicate redelivery.",
+        "Served features over gRPC with deadlines at 13 ms p99 for linearizable reads under 1,000 req/s open loop load, and added request coalescing that cut Redis cached p99 at 2,000 req/s from 33 ms to 22 ms."
       ]
     }
   ],
