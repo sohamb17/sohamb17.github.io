@@ -150,5 +150,42 @@
   },
   "LeetCode": {
     "src": "./brands/leetcode.svg"
+  },
+  "Apache Hive": {
+    "src": "./brands/hive.svg",
+    "wide": false
+  },
+  "Kubernetes": {
+    "src": "./brands/kubernetes.svg",
+    "wide": false
+  },
+  "FastAPI": {
+    "src": "./brands/fastapi.png",
+    "wide": false
+  },
+  "Prometheus": {
+    "src": "./brands/prometheus.svg",
+    "wide": false
+  },
+  "SQL": {
+    "glyph": "database"
+  },
+  "C": {
+    "glyph": "letter-c"
+  },
+  "pgvector": {
+    "glyph": "vector"
+  },
+  "CI/CD": {
+    "glyph": "cycle"
+  },
+  "REST APIs": {
+    "glyph": "braces"
+  },
+  "AI coding assistants (GitHub Copilot, Cursor, Claude Code, OpenAI Codex, Gemini)": {
+    "glyph": "sparkle"
+  },
+  "Codeforces": {
+    "src": "./brands/codeforces.png"
   }
 }

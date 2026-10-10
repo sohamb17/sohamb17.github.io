@@ -12,7 +12,7 @@ const { profile, projects, experience, education, skills, publications } = conte
 
 const employers: Record<string, { name: string; logo: string; location: string }> = content.employers;
 
-const assets: Record<string, { src: string; wide?: boolean; surface?: string }> = brandAssets;
+const assets: Record<string, { src?: string; wide?: boolean; surface?: string; glyph?: string }> = brandAssets;
 
 const links = [{ href: '#work', label: 'Work' }, { href: '#experience', label: 'Experience' }, { href: '#about', label: 'About' }, { href: '#research', label: 'Research' }];
 
@@ -60,11 +60,31 @@ function FileIcon() {
 
 
 
+const glyphs: Record<string, ReactNode> = {
+
+  database: <><ellipse cx="12" cy="5.5" rx="7" ry="2.5" /><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5" /></>,
+
+  'letter-c': <path d="M17 7.2A6.5 6.5 0 1 0 17 16.8" strokeWidth="2.4" />,
+
+  vector: <><path d="M4 4v16h16" /><path d="m7 17 10-10M11 7h6v6" /></>,
+
+  cycle: <><path d="M20 12a8 8 0 0 1-13.7 5.6M4 12a8 8 0 0 1 13.7-5.6" /><path d="M18 3v4h-4M6 21v-4h4" /></>,
+
+  braces: <path d="M9 4c-2 0-3 1-3 3v2.5c0 1.2-.8 2.5-2 2.5 1.2 0 2 1.3 2 2.5V17c0 2 1 3 3 3M15 4c2 0 3 1 3 3v2.5c0 1.2.8 2.5 2 2.5-1.2 0-2 1.3-2 2.5V17c0 2-1 3-3 3" />,
+
+  sparkle: <><path d="M10 3.5 11.8 9 17 10.8 11.8 12.6 10 18l-1.8-5.4L3 10.8 8.2 9Z" /><path d="M18 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z" /></>,
+
+};
+
+
+
 function BrandMark({ name }: { name: string }) {
 
   const asset = assets[name];
 
   if (!asset) return null;
+
+  if (asset.glyph) return <span className="asset-mark asset-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">{glyphs[asset.glyph]}</svg></span>;
 
   return <span className={`asset-mark${asset.wide ? ' asset-mark-wide' : ''}${asset.surface === 'dark' ? ' asset-mark-dark' : ''}`} aria-hidden="true"><img src={asset.src} alt="" width="32" height="32" loading="lazy" /></span>;
 
@@ -171,6 +191,42 @@ function LeetCodeCaption() {
     <p className="leetcode-updated">Updated <time dateTime={stats.updatedAt}>{new Date(stats.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time></p>
 
   </div>;
+
+}
+
+
+
+type ProjectLink = { label: string; href: string; kind: string };
+
+type Metric = { value: string; unit: string; href?: string };
+
+
+
+function ProjectLinks({ name, links: projectLinks }: { name: string; links?: ProjectLink[] }) {
+
+  if (!projectLinks?.length) return null;
+
+  return <div className="project-links" aria-label={`${name} links`}>{projectLinks.map(link => link.kind === 'demo'
+
+    ? <a key={link.href} className="button button-primary" href={link.href}>{link.label}<Arrow diagonal /></a>
+
+    : link.kind === 'github'
+
+      ? <a key={link.href} className="button button-outline" href={link.href}><BrandIcon brand="github" />{link.label}</a>
+
+      : <a key={link.href} className="project-doc-link" href={link.href}>{link.label}<Arrow diagonal /></a>)}</div>;
+
+}
+
+
+
+function MetricItem({ metric }: { metric: Metric }) {
+
+  const body = <><strong>{metric.value}</strong><span>{metric.unit}</span></>;
+
+  if (!metric.href) return <div>{body}</div>;
+
+  return <div><a className="metric-link" href={metric.href}>{body}<small className="metric-source">Source <Arrow diagonal /></small></a></div>;
 
 }
 
@@ -366,9 +422,9 @@ export default function App() {
 
           <div className="project-topline"><span className="mono">PROJECT / 0{index + 1}</span><span className="project-category mono">{project.category}</span></div>
 
-          <div className="project-grid"><div className="project-copy"><h3>{project.name}</h3><p className="project-tagline">{project.title}</p><p className="project-description">{project.description}</p><ul className="tech-tags" aria-label={`${project.name} technologies`}>{project.technologies.map(tech => <Technology key={tech} name={tech} />)}</ul></div>{index === 0 ? <FrameSeekDiagram /> : <StreamForgeDiagram />}</div>
+          <div className="project-grid"><div className="project-copy"><h3>{project.name}</h3><p className="project-tagline">{project.title}</p><p className="project-description">{project.description}</p><ul className="tech-tags" aria-label={`${project.name} technologies`}>{project.technologies.map(tech => <Technology key={tech} name={tech} />)}</ul><ProjectLinks name={project.name} links={(project as { links?: ProjectLink[] }).links} /></div>{index === 0 ? <FrameSeekDiagram /> : <StreamForgeDiagram />}</div>
 
-          <div className="project-results"><div className="metrics">{project.metrics.map(metric => <div key={metric.unit}><strong>{metric.value}</strong><span>{metric.unit}</span></div>)}</div><p className="project-detail">{project.detail}</p></div>
+          <div className="project-results"><div className="metrics">{(project.metrics as Metric[]).map(metric => <MetricItem key={metric.unit} metric={metric} />)}</div><p className="project-detail">{project.detail}</p></div>
 
         </article>)}</div>
 
@@ -390,7 +446,7 @@ export default function App() {
 
         <SectionTitle number="03" eyebrow="BACKGROUND & TOOLKIT" title="A foundation to build on." />
 
-        <div className="about-grid"><div className="education"><h3 className="subheading">Education</h3>{education.map(school => <article key={school.shortName} className="school"><div className="school-logo"><BrandMark name={school.shortName} /></div><div><h4>{school.school}</h4><p>{school.degree}</p><span className="school-dates">{school.dates}</span><span className="school-detail mono">{school.detail}</span></div></article>)}</div><div className="skills"><h3 className="subheading">Tools I work with</h3>{skills.map(group => <div className="skill-group" key={group.name}><h4>{group.name}</h4><ul className="skill-tags" aria-label={group.name}>{group.items.map(item => <Technology key={item} name={item} />)}</ul></div>)}</div><div className="problem-solving"><h3 className="subheading">Problem solving</h3><a className="text-link" href={profile.leetcode}><BrandMark name="LeetCode" />LeetCode <Arrow diagonal /></a><LeetCodeCaption /></div></div>
+        <div className="about-grid"><div className="education"><h3 className="subheading">Education</h3>{education.map(school => <article key={school.shortName} className="school"><div className="school-logo"><BrandMark name={school.shortName} /></div><div><h4>{school.school}</h4><p>{school.degree}</p><span className="school-dates">{school.dates}</span><span className="school-detail mono">{school.detail}</span></div></article>)}</div><div className="skills"><h3 className="subheading">Tools I work with</h3>{skills.map(group => <div className="skill-group" key={group.name}><h4>{group.name}</h4><ul className="skill-tags" aria-label={group.name}>{group.items.map(item => <Technology key={item} name={item} />)}</ul></div>)}</div><div className="problem-solving"><h3 className="subheading">Problem solving</h3><a className="text-link" href={profile.leetcode}><BrandMark name="LeetCode" />LeetCode <Arrow diagonal /></a><LeetCodeCaption /><div className="codeforces-block"><a className="text-link" href={profile.codeforces.url}><BrandMark name="Codeforces" />Codeforces <Arrow diagonal /></a><div className="leetcode-caption"><p>{profile.codeforces.rank} · rating {profile.codeforces.rating} (max {profile.codeforces.maxRating}) · {profile.codeforces.contests} rated contests</p><p className="leetcode-updated">Updated <time dateTime={profile.codeforces.updatedAt}>{new Date(`${profile.codeforces.updatedAt}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time></p></div></div></div></div>
 
       </section>
 
@@ -406,7 +462,7 @@ export default function App() {
 
 
 
-      <section id="contact" className="contact-section"><div className="container contact-inner"><div><p className="eyebrow"><span className="section-number">05</span>LET’S CONNECT</p><h2>Have something<br />in mind<span>?</span></h2><p>I’m looking for Summer 2027 internships in software engineering,<br className="desktop-break" /> distributed systems, and ML infrastructure. Let’s talk.</p><a className="contact-email" href={`mailto:${profile.email}`}><MailIcon /><span>{profile.email}</span><Arrow diagonal /></a></div><div className="contact-links"><a href={profile.linkedin}><span className="link-label"><BrandIcon brand="linkedin" />LinkedIn</span><Arrow diagonal /></a><a href={profile.github}><span className="link-label"><BrandIcon brand="github" />GitHub</span><Arrow diagonal /></a><a href="./Soham_Belurgikar_Resume.pdf" type="application/pdf" download><span className="link-label"><FileIcon />Résumé</span><Arrow diagonal /></a></div></div></section>
+      <section id="contact" className="contact-section"><div className="container contact-inner"><div><p className="eyebrow"><span className="section-number">05</span>LET’S CONNECT</p><h2>Have something<br />in mind<span>?</span></h2><p>{profile.seeking[0]}<br className="desktop-break" /> {profile.seeking[1]}</p><a className="contact-email" href={`mailto:${profile.email}`}><MailIcon /><span>{profile.email}</span><Arrow diagonal /></a></div><div className="contact-links"><a href={profile.linkedin}><span className="link-label"><BrandIcon brand="linkedin" />LinkedIn</span><Arrow diagonal /></a><a href={profile.github}><span className="link-label"><BrandIcon brand="github" />GitHub</span><Arrow diagonal /></a><a href="./Soham_Belurgikar_Resume.pdf" type="application/pdf" download><span className="link-label"><FileIcon />Résumé</span><Arrow diagonal /></a></div></div></section>
 
     </main>
 

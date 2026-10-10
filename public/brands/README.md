@@ -56,13 +56,21 @@ Official organization/project websites and their linked asset hosts are used bel
 | Node.js | `node.svg` | [Source](https://nodejs.org/en/about/branding) | [Download](https://nodejs.org/static/logos/nodejsHex.svg) |
 | gRPC | `grpc.png` | [Source](https://grpc.io/) | [Download](https://grpc.io/favicons/android-chrome-192x192.png) |
 | IEEE | `ieee.png` | [Source](https://ieee-cas.org/) | [Download](https://ieee-cas.org/themes/custom/catalyze_tw/ieee-logo.png) |
+| Apache Hive | `hive.svg` | [Source](https://hive.apache.org/) | [Download](https://hive.apache.org/images/hive.svg) |
+| Kubernetes | `kubernetes.svg` | [Source](https://github.com/kubernetes/kubernetes/tree/master/logo) | [Download](https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg) |
+| FastAPI | `fastapi.png` | [Source](https://fastapi.tiangolo.com/) | [Download](https://fastapi.tiangolo.com/img/favicon.png) |
+| Prometheus | `prometheus.svg` | [Source](https://prometheus.io/) | [Download](https://prometheus.io/_next/static/media/prometheus-logo.7aa022e5.svg) |
 
 The Git logo is by Jason Long, licensed under [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/), as documented on the [Git logo page](https://git-scm.com/community/logos). Tux was created by Larry Ewing. Other artwork remains subject to its respective owner's terms. These marks identify education, publications, and technologies; they do not imply endorsement.
 
-Logo artwork is not recolored or distorted. The white IEEE mark uses a dark tile in both themes. Adjacent text provides the accessible label; decorative images have empty alternative text. C, SQL, REST APIs, CI/CD, and AI-assisted development remain text-only because they do not have a single official brand asset appropriate to these labels.
+Logo artwork is not recolored or distorted. The white IEEE mark uses a dark tile in both themes. Adjacent text provides the accessible label; decorative images have empty alternative text. C, SQL, pgvector, REST APIs, CI/CD, and AI coding assistants do not have a single official brand asset appropriate to these labels, so they use original generic glyphs drawn inline in `src/App.tsx` (letter C, database, vector, braces, cycle, sparkle). These glyphs are interface icons, not logos of any language, product, or company. Hive, Kubernetes, FastAPI and Prometheus assets were retrieved 10 October 2026.
 
 The mapping from content labels to assets is in `src/brand-assets.json`. Keep source information here when adding or replacing a logo.
 
 ## LeetCode
 
 `leetcode.svg` is the official light-theme symbol extracted from the navigation logo on [LeetCode](https://leetcode.com/u/sohamb17/) on 20 September 2026. Original paths and colors are preserved; website-specific CSS classes were omitted. It identifies the linked personal profile and is shown on a white tile in both themes. LeetCode retains ownership of its mark.
+
+## Codeforces
+
+`codeforces.png` is the official site icon from [Codeforces](https://codeforces.com/profile/sohamb17), downloaded from https://codeforces.org/s/0/favicon-96x96.png on 10 October 2026. It identifies the linked personal profile. Rating figures come from the public Codeforces API (`user.info`) on the same date and are static until updated by hand. Codeforces retains ownership of its mark.

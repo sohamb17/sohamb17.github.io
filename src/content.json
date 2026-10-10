@@ -14,7 +14,19 @@
     "specialty": "Distributed systems & ML infrastructure",
     "availability": "Seeking Summer 2027 internships",
     "intro": "I build distributed systems, data platforms, and intelligent search. Currently pursuing my Master of Computer Science at UIUC, after three years engineering data systems at Barclays.",
-    "leetcode": "https://leetcode.com/u/sohamb17/"
+    "leetcode": "https://leetcode.com/u/sohamb17/",
+    "seeking": [
+      "I’m looking for Summer 2027 internships in backend, distributed systems,",
+      "data infrastructure, and ML engineering. Let’s talk."
+    ],
+    "codeforces": {
+      "url": "https://codeforces.com/profile/sohamb17",
+      "rank": "Specialist",
+      "rating": 1446,
+      "maxRating": 1464,
+      "contests": 51,
+      "updatedAt": "2026-10-10"
+    }
   },
   "projects": [
     {
@@ -40,15 +52,18 @@
       "metrics": [
         {
           "value": "5",
-          "unit": "retrieval channels fused"
+          "unit": "retrieval channels fused",
+          "href": "https://github.com/sohamb17/frameseek#how-search-works"
         },
         {
           "value": "48%",
-          "unit": "top-1 success, up from 26%"
+          "unit": "top-1 success, up from 26%",
+          "href": "https://github.com/sohamb17/frameseek/blob/main/docs/results/retrieval-test.md"
         },
         {
           "value": "35/35",
-          "unit": "scripted conversation turns passed"
+          "unit": "scripted conversation turns passed",
+          "href": "https://github.com/sohamb17/frameseek/blob/main/docs/results/conversation-dev.md"
         }
       ],
       "detail": "Top-1 success measured once on 27 held-out test queries, using 79 AI-written labels audited by a random 20-label author spot check. The learned scorer beats fixed rank fusion but not transcript-only semantic search at top-1 (56%), and ties it at top-5 (67%). Runs locally with Docker Compose; no cloud deployment yet.",
@@ -57,6 +72,28 @@
         "Engineered resumable ingestion on PostgreSQL with job leases, attempt generations, checksummed stage manifests and atomically published index versions, verified by worker crash, duplicate submission and failed reindex tests.",
         "Developed a Go API with streaming uploads, SSRF safe URL import, idempotent jobs and signed media URLs in front of a Python FastAPI retrieval service on pgvector and PostgreSQL full text search.",
         "Trained a scikit-learn relevance scorer on 25 cross modal features that raised top 1 success on held out videos from 26% to 48% over fixed rank fusion, measured on 79 AI written labels with a random author audit."
+      ],
+      "links": [
+        {
+          "label": "Demo",
+          "href": "https://sohamb17.github.io/frameseek/",
+          "kind": "demo"
+        },
+        {
+          "label": "Code",
+          "href": "https://github.com/sohamb17/frameseek",
+          "kind": "github"
+        },
+        {
+          "label": "Results",
+          "href": "https://github.com/sohamb17/frameseek/blob/main/docs/results/retrieval.md",
+          "kind": "doc"
+        },
+        {
+          "label": "Architecture",
+          "href": "https://github.com/sohamb17/frameseek/blob/main/docs/ARCHITECTURE.md",
+          "kind": "doc"
+        }
       ]
     },
     {
@@ -80,15 +117,18 @@
       "metrics": [
         {
           "value": "250k",
-          "unit": "synthetic events per second"
+          "unit": "synthetic events per second",
+          "href": "https://github.com/sohamb17/streamforge/blob/main/bench/results/gate4/REPORT.md"
         },
         {
           "value": "13 ms",
-          "unit": "p99 linearizable reads"
+          "unit": "p99 linearizable reads",
+          "href": "https://github.com/sohamb17/streamforge/blob/main/bench/results/gate4/REPORT.md"
         },
         {
           "value": "381 ms",
-          "unit": "median leader failover"
+          "unit": "median leader failover",
+          "href": "https://github.com/sohamb17/streamforge/blob/main/bench/results/gate4/REPORT.md"
         }
       ],
       "detail": "All numbers from one shared 2 vCPU host. 250,000 synthetic events/sec held for 10 minutes at 63 ms p99 freshness; linearizable reads at 13 ms p99 under 1,000 req/s open loop load. Linearizability checked with Porcupine under leader kills, pauses and network partitions.",
@@ -97,6 +137,28 @@
         "Implemented Raft from scratch in Go for a 5 node online store with PreVote, ReadIndex, snapshots and an fsynced WAL; verified linearizability with Porcupine under leader kills, pauses and network partitions, with 381 ms median failover.",
         "Achieved effectively once processing by committing Kafka offsets and window state atomically with feature updates in each Raft entry, yielding 0 mismatches against a batch oracle across 1M trips under repeated worker crashes and duplicate redelivery.",
         "Served features over gRPC with deadlines at 13 ms p99 for linearizable reads under 1,000 req/s open loop load, and added request coalescing that cut Redis cached p99 at 2,000 req/s from 33 ms to 22 ms."
+      ],
+      "links": [
+        {
+          "label": "Live demo",
+          "href": "https://sohamb17.github.io/streamforge/",
+          "kind": "demo"
+        },
+        {
+          "label": "Code",
+          "href": "https://github.com/sohamb17/streamforge",
+          "kind": "github"
+        },
+        {
+          "label": "Benchmarks",
+          "href": "https://github.com/sohamb17/streamforge/blob/main/bench/results/gate4/REPORT.md",
+          "kind": "doc"
+        },
+        {
+          "label": "Fault tests",
+          "href": "https://github.com/sohamb17/streamforge/blob/main/bench/results/faults/SUMMARY.md",
+          "kind": "doc"
+        }
       ]
     }
   ],
@@ -196,9 +258,11 @@
       "name": "Distributed systems & data",
       "items": [
         "Apache Spark",
+        "Apache Hive",
         "Apache Kafka",
         "Hadoop (HDFS)",
         "PostgreSQL",
+        "pgvector",
         "Redis"
       ]
     },
@@ -219,9 +283,10 @@
       "items": [
         "AWS (S3, Batch, EC2)",
         "Docker",
+        "Kubernetes",
         "Jenkins",
         "CI/CD",
-        "AI-assisted development",
+        "AI coding assistants (GitHub Copilot, Cursor, Claude Code, OpenAI Codex, Gemini)",
         "Linux",
         "Git",
         "GitLab"
@@ -231,6 +296,7 @@
       "name": "Frameworks & protocols",
       "items": [
         "Spring Boot",
+        "FastAPI",
         "Django",
         "React",
         "Angular",
