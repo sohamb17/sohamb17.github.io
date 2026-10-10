@@ -19,14 +19,7 @@
       "I’m looking for Summer 2027 internships in backend, distributed systems,",
       "data infrastructure, and ML engineering. Let’s talk."
     ],
-    "codeforces": {
-      "url": "https://codeforces.com/profile/sohamb17",
-      "rank": "Specialist",
-      "rating": 1446,
-      "maxRating": 1464,
-      "contests": 51,
-      "updatedAt": "2026-10-10"
-    }
+    "codeforces": "https://codeforces.com/profile/sohamb17"
   },
   "projects": [
     {

@@ -1,10 +1,12 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 
 import content from './content.json';
 
 import brandAssets from './brand-assets.json';
 
 import savedLeetCodeStats from './leetcode-stats.json';
+
+import savedCodeforcesStats from './codeforces-stats.json';
 
 
 
@@ -104,43 +106,46 @@ type LeetCodeStats = {
 
 
 
+// Shared hover/focus tooltip behaviour: opens on hover or keyboard focus, Escape dismisses.
+function useTooltip() {
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const open = (hovered || focused) && !dismissed;
+  useEffect(() => {
+    if (!open) return;
+    const dismiss = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setDismissed(true);
+    };
+    document.addEventListener('keydown', dismiss);
+    return () => document.removeEventListener('keydown', dismiss);
+  }, [open]);
+  return {
+    open,
+    wrap: { onMouseEnter: () => { setHovered(true); setDismissed(false); }, onMouseLeave: () => setHovered(false) },
+    trigger: {
+      onFocus: () => { setFocused(true); setDismissed(false); },
+      onBlur: () => { setFocused(false); setDismissed(false); },
+      onClick: () => setDismissed(false),
+    },
+  };
+}
+
+
+
 function ContestBadge({ stats }: { stats: LeetCodeStats }) {
 
-  const [hovered, setHovered] = useState(false);
+  const tooltip = useTooltip();
 
-  const [focused, setFocused] = useState(false);
-
-  const [dismissed, setDismissed] = useState(false);
+  const open = tooltip.open;
 
   const [imageFailed, setImageFailed] = useState(false);
-
-  const open = (hovered || focused) && !dismissed;
-
-  useEffect(() => {
-
-    if (!open) return;
-
-    const dismiss = (event: KeyboardEvent) => {
-
-      if (event.key === 'Escape') setDismissed(true);
-
-    };
-
-    document.addEventListener('keydown', dismiss);
-
-    return () => document.removeEventListener('keydown', dismiss);
-
-  }, [open]);
 
   const badge = stats.badge;
 
   if (!badge?.icon || imageFailed || !['Knight', 'Guardian'].includes(badge.name)) return null;
 
-  return <span className="leetcode-badge-wrap"
-
-    onMouseEnter={() => { setHovered(true); setDismissed(false); }}
-
-    onMouseLeave={() => setHovered(false)}>
+  return <span className="leetcode-badge-wrap" {...tooltip.wrap}>
 
     <button type="button" className="leetcode-contest-badge"
 
@@ -148,11 +153,7 @@ function ContestBadge({ stats }: { stats: LeetCodeStats }) {
 
       aria-describedby="leetcode-contest-details"
 
-      onFocus={() => { setFocused(true); setDismissed(false); }}
-
-      onBlur={() => { setFocused(false); setDismissed(false); }}
-
-      onClick={() => setDismissed(false)}>
+      {...tooltip.trigger}>
 
       <img src={badge.icon} alt="" width="24" height="24" loading="lazy" onError={() => setImageFailed(true)} />
 
@@ -186,10 +187,126 @@ function LeetCodeCaption() {
 
     <div className="leetcode-stats-line"><ContestBadge stats={stats} /><p>{contestText}{stats.solved.toLocaleString('en-US')} problems solved</p></div>
 
-    <p className="leetcode-updated">Updated <time dateTime={stats.updatedAt}>{new Date(stats.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time></p>
+    <UpdatedAt iso={stats.updatedAt} />
 
   </div>;
 
+}
+
+
+
+function UpdatedAt({ iso }: { iso: string }) {
+  return <p className="leetcode-updated">Updated <time dateTime={iso}>{new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time></p>;
+}
+
+
+
+type CodeforcesStats = {
+  handle: string; rank: string; rating: number; maxRank: string; maxRating: number;
+  contestCount: number; history: { rating: number; time: number }[]; updatedAt: string;
+};
+
+// Official Codeforces rank colours (light theme), with lighter equivalents where the
+// original would be unreadable on the dark navy theme. Specialist cyan works on both.
+const RANK_COLORS: Record<string, [string, string]> = {
+  newbie: ['#808080', '#a3a3a3'],
+  pupil: ['#008000', '#3fbf3f'],
+  specialist: ['#03a89e', '#03a89e'],
+  expert: ['#0000ff', '#7d8cff'],
+  'candidate master': ['#aa00aa', '#e070e0'],
+  master: ['#ff8c00', '#ff8c00'],
+  'international master': ['#ff8c00', '#ff8c00'],
+  grandmaster: ['#ff0000', '#ff5c5c'],
+  'international grandmaster': ['#ff0000', '#ff5c5c'],
+  'legendary grandmaster': ['#ff0000', '#ff5c5c'],
+};
+
+// Background bands from the rating graph on codeforces.com profiles.
+const RATING_BANDS: [number, number, string][] = [
+  [0, 1200, '#cccccc'], [1200, 1400, '#77ff77'], [1400, 1600, '#77ddbb'], [1600, 1900, '#aaaaff'], [1900, 2100, '#ff88ff'],
+  [2100, 2300, '#ffcc88'], [2300, 2400, '#ffbb55'], [2400, 2600, '#ff7777'], [2600, 3000, '#ff3333'], [3000, 5000, '#aa0000'],
+];
+
+const titleCase = (value: string) => value.replace(/\b\w/g, letter => letter.toUpperCase());
+
+const rankStyle = (rank: string) => {
+  const [light, dark] = RANK_COLORS[rank] ?? RANK_COLORS.newbie;
+  return { '--rank-light': light, '--rank-dark': dark } as CSSProperties;
+};
+
+const monthYear = (seconds: number) => new Date(seconds * 1000).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+
+
+
+function RatingChart({ history }: { history: CodeforcesStats['history'] }) {
+  const width = 264, height = 112, left = 32, right = 258, top = 6, bottom = 92;
+  const ratings = history.map(row => row.rating);
+  const lo = Math.max(0, Math.floor((Math.min(...ratings) - 60) / 100) * 100);
+  const hi = Math.ceil((Math.max(...ratings) + 60) / 100) * 100;
+  const first = history[0].time, last = history[history.length - 1].time;
+  const x = (time: number) => last === first ? (left + right) / 2 : left + (time - first) / (last - first) * (right - left);
+  const y = (rating: number) => bottom - (rating - lo) / (hi - lo) * (bottom - top);
+  const line = history.map((row, index) => `${index ? 'L' : 'M'}${x(row.time).toFixed(1)} ${y(row.rating).toFixed(1)}`).join('');
+  const peak = history.reduce((best, row) => row.rating > best.rating ? row : best, history[0]);
+  const bands = RATING_BANDS.filter(([from, to]) => to > lo && from < hi);
+  const boundaries = bands.map(([from]) => from).filter(value => value > lo && value < hi);
+  const ticks = boundaries.length ? boundaries : [lo, hi];
+  const firstYear = new Date(first * 1000).getUTCFullYear(), lastYear = new Date(last * 1000).getUTCFullYear();
+  return <svg className="cf-chart" viewBox={`0 0 ${width} ${height}`} aria-hidden="true" focusable="false">
+    {bands.map(([from, to, color]) => <rect key={from} className="cf-band" x={left} width={right - left} y={y(Math.min(to, hi))} height={y(Math.max(from, lo)) - y(Math.min(to, hi))} fill={color} />)}
+    <rect className="cf-chart-frame" x={left} y={top} width={right - left} height={bottom - top} />
+    {ticks.map(value => <text key={value} className="cf-chart-label" x={left - 5} y={y(value) + 3} textAnchor="end">{value}</text>)}
+    <path className="cf-chart-shadow" d={line} pathLength={1} transform="translate(0 1.2)" />
+    <path className="cf-chart-line" d={line} pathLength={1} />
+    {history.map(row => <circle key={row.time} className="cf-chart-point" cx={x(row.time)} cy={y(row.rating)} r="1.7" />)}
+    <circle className="cf-chart-peak" cx={x(peak.time)} cy={y(peak.rating)} r="3.3" />
+    <text className="cf-chart-label" x={left} y={height - 6}>{firstYear}</text>
+    {lastYear !== firstYear && <text className="cf-chart-label" x={right} y={height - 6} textAnchor="end">{lastYear}</text>}
+  </svg>;
+}
+
+
+
+function Sparkline({ history }: { history: CodeforcesStats['history'] }) {
+  const ratings = history.map(row => row.rating);
+  const lo = Math.min(...ratings), span = Math.max(...ratings) - lo || 1;
+  const step = history.length > 1 ? 26 / (history.length - 1) : 0;
+  const points = ratings.map((rating, index) => `${(1 + index * step).toFixed(1)},${(12.5 - (rating - lo) / span * 11).toFixed(1)}`).join(' ');
+  return <svg className="cf-sparkline" viewBox="0 0 28 14" aria-hidden="true" focusable="false"><polyline points={points} /></svg>;
+}
+
+
+
+function CodeforcesRank({ stats }: { stats: CodeforcesStats }) {
+  const tooltip = useTooltip();
+  const rank = titleCase(stats.rank);
+  const peak = stats.history.find(row => row.rating === stats.maxRating);
+  const hasChart = stats.history.length > 1;
+  return <span className="leetcode-badge-wrap" {...tooltip.wrap}>
+    <button type="button" className={`cf-rank cf-rank-chip${tooltip.open ? ' is-open' : ''}`} style={rankStyle(stats.rank)}
+      aria-label={`Codeforces ${rank}, rating ${stats.rating}. Show rating history`}
+      aria-describedby="codeforces-rating-details"
+      {...tooltip.trigger}>
+      {rank}{hasChart && <Sparkline history={stats.history} />}
+    </button>
+    <span id="codeforces-rating-details" role="tooltip" className="leetcode-tooltip cf-tooltip" hidden={!tooltip.open}>
+      <span className="cf-tooltip-head"><strong className="cf-rank" style={rankStyle(stats.rank)}>{rank}</strong><span className="cf-tooltip-rating">{stats.rating}</span></span>
+      <span className="cf-tooltip-meta">Peak <b className="cf-rank" style={rankStyle(stats.maxRank)}>{stats.maxRating}</b>{stats.maxRank !== stats.rank && ` (${titleCase(stats.maxRank)})`}{peak && ` in ${monthYear(peak.time)}`} · {stats.contestCount} rated contests</span>
+      {hasChart && <RatingChart history={stats.history} />}
+    </span>
+  </span>;
+}
+
+
+
+function CodeforcesCaption() {
+  const stats = savedCodeforcesStats as CodeforcesStats | null;
+  const handle = new URL(profile.codeforces).pathname.split('/')[2];
+  if (!stats || stats.handle.toLowerCase() !== handle?.toLowerCase()) return null;
+  return <div className="leetcode-caption">
+    <div className="leetcode-stats-line"><CodeforcesRank stats={stats} /><p>Rating {stats.rating} · max {stats.maxRating} · {stats.contestCount} contests</p></div>
+    <UpdatedAt iso={stats.updatedAt} />
+  </div>;
 }
 
 
@@ -444,7 +561,7 @@ export default function App() {
 
         <SectionTitle number="03" eyebrow="BACKGROUND & TOOLKIT" title="A foundation to build on." />
 
-        <div className="about-grid"><div className="education"><h3 className="subheading">Education</h3>{education.map(school => <article key={school.shortName} className="school"><div className="school-logo"><BrandMark name={school.shortName} /></div><div><h4>{school.school}</h4><p>{school.degree}</p><span className="school-dates">{school.dates}</span><span className="school-detail mono">{school.detail}</span></div></article>)}</div><div className="skills"><h3 className="subheading">Tools I work with</h3>{skills.map(group => <div className="skill-group" key={group.name}><h4>{group.name}</h4><ul className="skill-tags" aria-label={group.name}>{group.items.map(item => <Technology key={item} name={item} />)}</ul></div>)}</div><div className="problem-solving"><h3 className="subheading">Problem solving</h3><a className="text-link" href={profile.leetcode}><BrandMark name="LeetCode" />LeetCode <Arrow diagonal /></a><LeetCodeCaption /><div className="codeforces-block"><a className="text-link" href={profile.codeforces.url}><BrandMark name="Codeforces" />Codeforces <Arrow diagonal /></a><div className="leetcode-caption"><p>{profile.codeforces.rank} · rating {profile.codeforces.rating} (max {profile.codeforces.maxRating}) · {profile.codeforces.contests} rated contests</p><p className="leetcode-updated">Updated <time dateTime={profile.codeforces.updatedAt}>{new Date(`${profile.codeforces.updatedAt}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time></p></div></div></div></div>
+        <div className="about-grid"><div className="education"><h3 className="subheading">Education</h3>{education.map(school => <article key={school.shortName} className="school"><div className="school-logo"><BrandMark name={school.shortName} /></div><div><h4>{school.school}</h4><p>{school.degree}</p><span className="school-dates">{school.dates}</span><span className="school-detail mono">{school.detail}</span></div></article>)}</div><div className="skills"><h3 className="subheading">Tools I work with</h3>{skills.map(group => <div className="skill-group" key={group.name}><h4>{group.name}</h4><ul className="skill-tags" aria-label={group.name}>{group.items.map(item => <Technology key={item} name={item} />)}</ul></div>)}</div><div className="problem-solving"><h3 className="subheading">Problem solving</h3><div className="cp-grid"><div className="cp-item"><a className="text-link" href={profile.leetcode}><BrandMark name="LeetCode" />LeetCode <Arrow diagonal /></a><LeetCodeCaption /></div><div className="cp-item"><a className="text-link" href={profile.codeforces}><BrandMark name="Codeforces" />Codeforces <Arrow diagonal /></a><CodeforcesCaption /></div></div></div></div>
 
       </section>
 

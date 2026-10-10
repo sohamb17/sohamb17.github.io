@@ -10,6 +10,8 @@
     "check": "tsc --noEmit",
     "refresh:leetcode": "node scripts/leetcode.mjs",
     "test:leetcode": "node --test scripts/leetcode.test.mjs",
+    "refresh:codeforces": "node scripts/codeforces.mjs",
+    "test:codeforces": "node --test scripts/codeforces.test.mjs",
     "generate:og": "node scripts/og-image.mjs"
   },
   "engines": {

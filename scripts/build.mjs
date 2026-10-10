@@ -3,6 +3,7 @@ import { build } from 'vite';
 
 await build();
 await copyFile('src/leetcode-stats.json', 'dist/leetcode-stats.json');
+await copyFile('src/codeforces-stats.json', 'dist/codeforces-stats.json');
 await build({
   build: {
     ssr: 'src/entry-server.tsx',

@@ -43,6 +43,12 @@ jobs:
         run: npm run build
         env:
           PORTFOLIO_URL: ${{ steps.pages.outputs.base_url }}
+      - name: Refresh Codeforces statistics
+        run: npm run refresh:codeforces
+        env:
+          PORTFOLIO_URL: ${{ steps.pages.outputs.base_url }}
+      - name: Test Codeforces refresh and fallback
+        run: npm run test:codeforces
       - name: Install screenshot browser
         run: npx playwright install --with-deps chromium
       - name: Generate homepage sharing preview
