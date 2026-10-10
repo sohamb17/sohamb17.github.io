@@ -60,10 +60,15 @@ Official organization/project websites and their linked asset hosts are used bel
 | Kubernetes | `kubernetes.svg` | [Source](https://github.com/kubernetes/kubernetes/tree/master/logo) | [Download](https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg) |
 | FastAPI | `fastapi.png` | [Source](https://fastapi.tiangolo.com/) | [Download](https://fastapi.tiangolo.com/img/favicon.png) |
 | Prometheus | `prometheus.svg` | [Source](https://prometheus.io/) | [Download](https://prometheus.io/_next/static/media/prometheus-logo.7aa022e5.svg) |
+| GitHub Copilot | `copilot.svg` | [Source](https://primer.style/octicons/) | [Download](https://raw.githubusercontent.com/primer/octicons/main/icons/copilot-24.svg) (GitHub Octicons, MIT) |
+| Cursor | `cursor.svg` | [Source](https://cursor.com/) | [Download](https://cursor.com/marketing-static/favicon-light.svg) |
+| Claude Code | `claude.png` | [Source](https://claude.ai/) | [Download](https://claude.ai/favicon.ico) (48 px frame saved as PNG) |
+| OpenAI Codex | `openai.png` | [Source](https://developers.openai.com/codex) | [Download](https://developers.openai.com/favicon.png) |
+| Gemini | `gemini.png` | [Source](https://gemini.google.com/) | [Download](https://www.gstatic.com/lamda/images/gemini_sparkle_4g_512_lt_f94943af3be039176192d.png) |
 
 The Git logo is by Jason Long, licensed under [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/), as documented on the [Git logo page](https://git-scm.com/community/logos). Tux was created by Larry Ewing. Other artwork remains subject to its respective owner's terms. These marks identify education, publications, and technologies; they do not imply endorsement.
 
-Logo artwork is not recolored or distorted. The white IEEE mark uses a dark tile in both themes. Adjacent text provides the accessible label; decorative images have empty alternative text. C, SQL, pgvector, REST APIs, CI/CD, and AI coding assistants do not have a single official brand asset appropriate to these labels, so they use original generic glyphs drawn inline in `src/App.tsx` (letter C, database, vector, braces, cycle, sparkle). These glyphs are interface icons, not logos of any language, product, or company. Hive, Kubernetes, FastAPI and Prometheus assets were retrieved 10 October 2026.
+Logo artwork is not recolored or distorted. The white IEEE mark uses a dark tile in both themes. Adjacent text provides the accessible label; decorative images have empty alternative text. C, SQL, pgvector, REST APIs, and CI/CD do not have a single official brand asset appropriate to these labels, so they use original generic glyphs drawn inline in `src/App.tsx` (letter C, database, vector, braces, cycle). These glyphs are interface icons, not logos of any language, product, or company. Hive, Kubernetes, FastAPI, Prometheus, GitHub Copilot, Cursor, Claude, OpenAI and Gemini assets were retrieved 10 October 2026. The AI coding assistant marks identify tools Soham uses; they do not imply endorsement.
 
 The mapping from content labels to assets is in `src/brand-assets.json`. Keep source information here when adding or replacing a logo.
 

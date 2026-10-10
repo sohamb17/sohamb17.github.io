@@ -182,10 +182,22 @@
   "REST APIs": {
     "glyph": "braces"
   },
-  "AI coding assistants (GitHub Copilot, Cursor, Claude Code, OpenAI Codex, Gemini)": {
-    "glyph": "sparkle"
-  },
   "Codeforces": {
     "src": "./brands/codeforces.png"
+  },
+  "GitHub Copilot": {
+    "src": "./brands/copilot.svg"
+  },
+  "Cursor": {
+    "src": "./brands/cursor.svg"
+  },
+  "Claude Code": {
+    "src": "./brands/claude.png"
+  },
+  "OpenAI Codex": {
+    "src": "./brands/openai.png"
+  },
+  "Gemini": {
+    "src": "./brands/gemini.png"
   }
 }

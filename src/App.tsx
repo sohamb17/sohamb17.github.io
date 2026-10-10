@@ -72,8 +72,6 @@ const glyphs: Record<string, ReactNode> = {
 
   braces: <path d="M9 4c-2 0-3 1-3 3v2.5c0 1.2-.8 2.5-2 2.5 1.2 0 2 1.3 2 2.5V17c0 2 1 3 3 3M15 4c2 0 3 1 3 3v2.5c0 1.2.8 2.5 2 2.5-1.2 0-2 1.3-2 2.5V17c0 2-1 3-3 3" />,
 
-  sparkle: <><path d="M10 3.5 11.8 9 17 10.8 11.8 12.6 10 18l-1.8-5.4L3 10.8 8.2 9Z" /><path d="M18 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z" /></>,
-
 };
 
 
@@ -370,7 +368,7 @@ export default function App() {
 
           <div className="hero-identity">
 
-            <div className="portrait-frame"><img src={profile.portrait.src} alt={profile.portrait.alt} width="3120" height="4160" fetchPriority="high" /></div>
+            <div className="portrait-frame"><img src={profile.portrait.src} alt={profile.portrait.alt} width="384" height="512" fetchPriority="high" /></div>
 
             <div><p className="eyebrow"><span className="orange-rule" />{profile.role}</p><p className="portrait-location">{profile.location}</p></div>
 
