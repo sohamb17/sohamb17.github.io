@@ -81,3 +81,7 @@ The mapping from content labels to assets is in `src/brand-assets.json`. Keep so
 `codeforces.png` is the official site icon from [Codeforces](https://codeforces.com/profile/sohamb17), downloaded from https://codeforces.org/s/0/favicon-96x96.png on 10 October 2026. It identifies the linked personal profile. Codeforces retains ownership of its mark.
 
 Rank, rating and rating history come from the public Codeforces API (`user.info` and `user.rating`). `scripts/codeforces.mjs` refreshes `src/codeforces-stats.json` on every deploy and on the daily scheduled build, and keeps the last verified snapshot if the API is unavailable. The rank colours (for example Specialist `#03A89E`) and the rating-graph band colours match those on codeforces.com, checked on 10 October 2026. The rating chart itself is drawn by the portfolio, not copied from Codeforces.
+
+## Icons from Simple Icons
+
+`javascript.svg`, `mongodb.svg` and `express.svg` are the JavaScript, MongoDB and Express marks from [Simple Icons](https://simpleicons.org/) 13.21.0 (CC0-1.0), filled with each brand's colour as listed there (JavaScript `#F7DF1E` on black, MongoDB `#47A248`, Express black). Simple Icons lists its upstream sources: [logo.js](https://github.com/voodootikigod/logo.js) for JavaScript, the [MongoDB pressroom](https://www.mongodb.com/pressroom) and the [OpenJS Foundation artwork repository](https://github.com/openjs-foundation/artwork) for Express. They identify skills used in coursework and projects. The trademarks belong to their owners.

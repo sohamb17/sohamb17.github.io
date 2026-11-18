@@ -1,4 +1,13 @@
 {
+  "JavaScript": {
+    "src": "./brands/javascript.svg"
+  },
+  "MongoDB": {
+    "src": "./brands/mongodb.svg"
+  },
+  "Express": {
+    "src": "./brands/express.svg"
+  },
   "UIUC": {
     "src": "./brands/uiuc.svg",
     "wide": false

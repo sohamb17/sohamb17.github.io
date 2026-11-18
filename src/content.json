@@ -13,11 +13,11 @@
     "role": "Software Engineer",
     "specialty": "Distributed systems & ML infrastructure",
     "availability": "Seeking Summer 2027 internships",
-    "intro": "I build distributed systems, data platforms, and intelligent search. Currently pursuing my Master of Computer Science at UIUC, after three years engineering data systems at Barclays.",
+    "intro": "I build backend services, distributed systems, and intelligent search. Currently pursuing my Master of Computer Science at UIUC, after three years building backend and distributed systems at Barclays.",
     "leetcode": "https://leetcode.com/u/sohamb17/",
     "seeking": [
-      "I’m looking for Summer 2027 internships in backend, distributed systems,",
-      "data infrastructure, and ML engineering. Let’s talk."
+      "I’m looking for Summer 2027 software engineering internships in backend,",
+      "distributed systems, and ML infrastructure. Let’s talk."
     ],
     "codeforces": "https://codeforces.com/profile/sohamb17"
   },
@@ -61,10 +61,10 @@
       ],
       "detail": "Top-1 success measured once on 27 held-out test queries, using 79 AI-written labels audited by a random 20-label author spot check. The learned scorer beats fixed rank fusion but not transcript-only semantic search at top-1 (56%), and ties it at top-5 (67%). Runs locally with Docker Compose; no cloud deployment yet.",
       "bullets": [
-        "Built a multimodal video search engine that indexes speech (Whisper), on screen text (Tesseract OCR) and frames (OpenCLIP) into timestamped clips across five retrieval channels, with LangGraph conversational search over a custom LangChain retriever.",
+        "Built a video search engine that indexes speech (Whisper), on screen text (Tesseract OCR) and frames (OpenCLIP) into timestamped clips across five retrieval channels, with LangGraph conversational search over a custom LangChain retriever.",
         "Engineered resumable ingestion on PostgreSQL with job leases, attempt generations, checksummed stage manifests and atomically published index versions, verified by worker crash, duplicate submission and failed reindex tests.",
         "Developed a Go API with streaming uploads, SSRF safe URL import, idempotent jobs and signed media URLs in front of a Python FastAPI retrieval service on pgvector and PostgreSQL full text search.",
-        "Trained a scikit-learn relevance scorer on 25 cross modal features that raised top 1 success on held out videos from 26% to 48% over fixed rank fusion, measured on 79 AI written labels with a random author audit."
+        "Evaluated six retrieval arms on held out videos: a scikit-learn scorer over 25 cross modal features raised top 1 success from 26% to 48% over fixed rank fusion, while transcript only search reached 56% (79 AI written labels)."
       ],
       "links": [
         {
@@ -124,12 +124,12 @@
           "href": "https://github.com/sohamb17/streamforge/blob/main/bench/results/gate4/REPORT.md"
         }
       ],
-      "detail": "All numbers from one shared 2 vCPU host. 250,000 synthetic events/sec held for 10 minutes at 63 ms p99 freshness; linearizable reads at 13 ms p99 under 1,000 req/s open loop load. Linearizability checked with Porcupine under leader kills, pauses and network partitions.",
+      "detail": "All numbers from one shared 2 vCPU host. 250,000 synthetic events/sec held for 10 minutes with flat consumer lag; linearizable reads at 13 ms p99 under 1,000 req/s open loop load. Linearizability checked with Porcupine under leader kills, pauses and network partitions.",
       "bullets": [
-        "Built a real time feature store in Go and Kafka computing per zone ML features from NYC taxi trips; sustained 250,000 synthetic events/sec for 10 minutes with flat consumer lag and 63 ms p99 freshness on a 2 vCPU host.",
-        "Implemented Raft from scratch in Go for a 5 node online store with PreVote, ReadIndex, snapshots and an fsynced WAL; verified linearizability with Porcupine under leader kills, pauses and network partitions, with 381 ms median failover.",
-        "Achieved effectively once processing by committing Kafka offsets and window state atomically with feature updates in each Raft entry, yielding 0 mismatches against a batch oracle across 1M trips under repeated worker crashes and duplicate redelivery.",
-        "Served features over gRPC with deadlines at 13 ms p99 for linearizable reads under 1,000 req/s open loop load, and added request coalescing that cut Redis cached p99 at 2,000 req/s from 33 ms to 22 ms."
+        "Built a real time feature store in Go and Kafka that computes per zone ML features from NYC taxi trips and serves them over gRPC; sustained 250,000 synthetic events/sec for 10 minutes with flat consumer lag on a 2 vCPU host.",
+        "Replicated the online store with a 5 node Raft group (PreVote, ReadIndex, snapshots, fsynced WAL) built without a consensus library; verified linearizability with Porcupine under leader kills, pauses and network partitions, with 381 ms median failover.",
+        "Achieved effectively once processing by committing Kafka offsets and window state atomically with feature updates in each Raft entry, yielding 0 mismatches against a batch oracle across 1M trips under repeated worker crashes.",
+        "Served linearizable reads at 13 ms p99 under 1,000 req/s open loop load, and added request coalescing that cut Redis cached p99 at 2,000 req/s from 33 ms to 22 ms."
       ],
       "links": [
         {
@@ -175,9 +175,10 @@
       "dates": "Apr. 2025 – Jul. 2026",
       "summary": "Making distributed data systems easier to trust.",
       "bullets": [
-        "Built a distributed comparison framework for 10+ node Spark clusters, isolating race conditions and cutting regression verification time across runtime versions by 50%.",
-        "Architected an on-demand synthetic data platform using React, Spring Boot, and Python, generating 1M+ records to enable load testing without production PII.",
-        "Automated data reconciliation and validation pipelines across staging and production, reducing manual verification effort by approximately 40%."
+        "Designed and built a regression testing framework that compares the outputs of 50+ batch jobs across four environments after Spark runtime upgrades, catching silent correctness bugs such as race conditions and cutting validation from hours to minutes.",
+        "Built an internal web application in React, Spring Boot and Python that generates 1M+ configurable synthetic records on demand, replacing manual test data preparation and removing the need for production data in load tests.",
+        "Automated reconciliation and validation of job outputs between staging and production, replacing manual checks.",
+        "Reviewed Spark and CI pipeline changes, documented design decisions and helped onboard new engineers."
       ]
     },
     {
@@ -187,9 +188,9 @@
       "dates": "Jul. 2023 – Mar. 2025",
       "summary": "Modernizing pipelines. Shortening the path to production.",
       "bullets": [
-        "Modernized core distributed data pipelines by migrating batch workloads to Spark 3.x on open-source Hadoop (HDFS), eliminating runtime bottlenecks with zero production downtime.",
-        "Engineered automated CI/CD pipelines via Jenkins and Groovy, cutting deployment cycle times by 35% across 15+ distributed artifacts and staging environments.",
-        "Benchmarked and tuned Spark SQL query plans across 10+ TB financial datasets, resolving execution bottlenecks while preserving 100% data integrity."
+        "Migrated 50+ production PySpark batch jobs to Spark 3.x on open-source Hadoop as one of three engineers over six months, validating performance and correctness on terabyte scale datasets (Certificate of Recognition).",
+        "Built Jenkins and Groovy pipelines that automate builds, tests and artifact distribution across environments for 3+ repositories and 2 teams, cutting deployments from hours to minutes.",
+        "Profiled and tuned Spark SQL query plans on terabyte scale financial datasets, removing execution bottlenecks."
       ]
     },
     {
@@ -210,7 +211,7 @@
       "dates": "Jun. 2022 – Jul. 2022",
       "summary": "Turning manual reconciliation into repeatable checks.",
       "bullets": [
-        "Developed a Python tool that automated cross-system dataset reconciliation and generated structured discrepancy reports for millions of records, packaged in Docker and integrated into a Jenkins pipeline, enabling the team to spot data mismatches quickly and cut manual review effort."
+        "Built a Python tool that compares datasets across systems and reports discrepancies over millions of records, packaged in Docker and run from a Jenkins pipeline."
       ]
     }
   ],
@@ -221,7 +222,7 @@
       "degree": "Master of Computer Science",
       "dates": "Aug. 2026 – May 2028 (Expected)",
       "location": "Urbana-Champaign, IL",
-      "detail": "MCS · In progress"
+      "detail": "Coursework: Advanced Data Management, Applied ML"
     },
     {
       "school": "Sardar Patel Institute of Technology",
@@ -237,26 +238,25 @@
       "name": "Languages",
       "items": [
         "Python",
-        "Go",
         "Java",
-        "TypeScript",
-        "C++",
+        "Go",
         "SQL",
-        "C",
-        "Groovy",
+        "TypeScript",
+        "JavaScript",
+        "C++",
         "Bash"
       ]
     },
     {
       "name": "Distributed systems & data",
       "items": [
-        "Apache Spark",
-        "Apache Hive",
         "Apache Kafka",
-        "Hadoop (HDFS)",
+        "Apache Spark",
         "PostgreSQL",
+        "MongoDB",
+        "Redis",
         "pgvector",
-        "Redis"
+        "Hadoop (HDFS)"
       ]
     },
     {
@@ -272,16 +272,14 @@
       ]
     },
     {
-      "name": "Cloud & DevOps",
+      "name": "DevOps & tools",
       "items": [
-        "AWS (S3, Batch, EC2)",
         "Docker",
-        "Kubernetes",
         "Jenkins",
         "CI/CD",
+        "GitLab",
         "Linux",
-        "Git",
-        "GitLab"
+        "Git"
       ]
     },
     {
@@ -289,10 +287,10 @@
       "items": [
         "Spring Boot",
         "FastAPI",
-        "Django",
         "React",
         "Angular",
         "Node.js",
+        "Express",
         "REST APIs",
         "gRPC"
       ]

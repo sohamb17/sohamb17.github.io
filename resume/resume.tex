@@ -85,11 +85,11 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {University of Illinois Urbana-Champaign}{Urbana-Champaign, IL}
-      {Master of Computer Science (MCS)}{Aug. 2026 -- May 2028 (Expected)}
+      {Master of Computer Science (MCS); Coursework: Advanced Data Management, Applied ML}{Aug. 2026 -- May 2028 (Expected)}
     \vspace{-2pt}
     \resumeSubheading
       {Sardar Patel Institute of Technology - University of Mumbai}{Mumbai, India}
-      {B.Tech in Computer Engineering; CGPA: 9.21/10.0}{Aug. 2019 -- May 2023}
+      {B.Tech in Computer Engineering; CGPA: 9.21/10.0 (top 5\% of class)}{Aug. 2019 -- May 2023}
   \resumeSubHeadingListEnd
 
 %-----------EXPERIENCE-----------
@@ -98,25 +98,26 @@
 
     \resumeSubheading
       {Barclays}{Pune, India}
-      {Software Engineer (BA4)}{Apr. 2025 -- Jul. 2026}
+      {Software Engineer (promoted to BA4)}{Apr. 2025 -- Jul. 2026}
       \resumeItemListStart
-        \resumeItem{Built a distributed comparison framework for 10+ node Spark clusters, isolating race conditions and cutting regression verification time across runtime versions by 50\%.}
-        \resumeItem{Architected an on-demand synthetic data platform using React, Spring Boot, and Python, generating 1M+ records to enable load testing without production PII.}
-        \resumeItem{Automated data reconciliation and validation pipelines across staging and production, reducing manual verification effort by approximately 40\%.}
+        \resumeItem{Designed and built a regression testing framework that compares the outputs of 50+ batch jobs across four environments after Spark runtime upgrades, catching silent correctness bugs such as race conditions and cutting validation from hours to minutes.}
+        \resumeItem{Built an internal web application in React, Spring Boot and Python that generates 1M+ configurable synthetic records on demand, replacing manual test data preparation and removing the need for production data in load tests.}
+        \resumeItem{Automated reconciliation and validation of job outputs between staging and production, replacing manual checks.}
+        \resumeItem{Reviewed Spark and CI pipeline changes, documented design decisions and helped onboard new engineers.}
       \resumeItemListEnd
 
     \resumeSubSubheading
       {Software Engineer (BA3)}{Jul. 2023 -- Mar. 2025}
       \resumeItemListStart
-        \resumeItem{Modernized core distributed data pipelines by migrating batch workloads to Spark 3.x on open-source Hadoop (HDFS), eliminating runtime bottlenecks with zero production downtime.}
-        \resumeItem{Engineered automated CI/CD pipelines via Jenkins and Groovy, cutting deployment cycle times by 35\% across 15+ distributed artifacts and staging environments.}
-        \resumeItem{Benchmarked and tuned Spark SQL query plans across 10+ TB financial datasets, resolving execution bottlenecks while preserving 100\% data integrity.}
+        \resumeItem{Migrated 50+ production PySpark batch jobs to Spark 3.x on open-source Hadoop as one of three engineers over six months, validating performance and correctness on terabyte scale datasets (Certificate of Recognition).}
+        \resumeItem{Built Jenkins and Groovy pipelines that automate builds, tests and artifact distribution across environments for 3+ repositories and 2 teams, cutting deployments from hours to minutes.}
+        \resumeItem{Profiled and tuned Spark SQL query plans on terabyte scale financial datasets, removing execution bottlenecks.}
       \resumeItemListEnd
 
     \resumeSubSubheading
       {Summer Intern (BA3)}{Jun. 2022 -- Jul. 2022}
       \resumeItemListStart
-        \resumeItem{Developed a Python tool that automated cross-system dataset reconciliation and generated structured discrepancy reports for millions of records, packaged in Docker and integrated into a Jenkins pipeline, enabling the team to spot data mismatches quickly and cut manual review effort.}
+        \resumeItem{Built a Python tool that compares datasets across systems and reports discrepancies over millions of records, packaged in Docker and run from a Jenkins pipeline.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -126,23 +127,23 @@
   \resumeSubHeadingListStart
 
     \resumeProjectHeading
-      {FrameSeek -- Multimodal Video Search Engine \hfill \normalfont\small \href{https://github.com/sohamb17/frameseek}{\underline{GitHub}} $|$ \href{https://sohamb17.github.io/frameseek/}{\underline{Demo}}}
-      {Python, Go, FastAPI, React, TypeScript, PostgreSQL, pgvector, LangChain, LangGraph, Docker}
-      \resumeItemListStart
-        \resumeItem{Built a multimodal video search engine that indexes speech (Whisper), on screen text (Tesseract OCR) and frames (OpenCLIP) into timestamped clips across five retrieval channels, with LangGraph conversational search over a custom LangChain retriever.}
-        \resumeItem{Engineered resumable ingestion on PostgreSQL with job leases, attempt generations, checksummed stage manifests and atomically published index versions, verified by worker crash, duplicate submission and failed reindex tests.}
-        \resumeItem{Developed a Go API with streaming uploads, SSRF safe URL import, idempotent jobs and signed media URLs in front of a Python FastAPI retrieval service on pgvector and PostgreSQL full text search.}
-        \resumeItem{Trained a scikit-learn relevance scorer on 25 cross modal features that raised top 1 success on held out videos from 26\% to 48\% over fixed rank fusion, measured on 79 AI written labels with a random author audit.}
-      \resumeItemListEnd
-
-    \resumeProjectHeading
       {StreamForge -- Distributed Real-Time Feature Store \& Pipeline \hfill \normalfont\small \href{https://github.com/sohamb17/streamforge}{\underline{GitHub}} $|$ \href{https://sohamb17.github.io/streamforge/}{\underline{Live Demo}}}
       {Go, Apache Kafka, gRPC, Redis, PostgreSQL, Python, Docker, Prometheus, React}
       \resumeItemListStart
-        \resumeItem{Built a real time feature store in Go and Kafka computing per zone ML features from NYC taxi trips; sustained 250,000 synthetic events/sec for 10 minutes with flat consumer lag and 63 ms p99 freshness on a 2 vCPU host.}
-        \resumeItem{Implemented Raft from scratch in Go for a 5 node online store with PreVote, ReadIndex, snapshots and an fsynced WAL; verified linearizability with Porcupine under leader kills, pauses and network partitions, with 381 ms median failover.}
-        \resumeItem{Achieved effectively once processing by committing Kafka offsets and window state atomically with feature updates in each Raft entry, yielding 0 mismatches against a batch oracle across 1M trips under repeated worker crashes and duplicate redelivery.}
-        \resumeItem{Served features over gRPC with deadlines at 13 ms p99 for linearizable reads under 1,000 req/s open loop load, and added request coalescing that cut Redis cached p99 at 2,000 req/s from 33 ms to 22 ms.}
+        \resumeItem{Built a real time feature store in Go and Kafka that computes per zone ML features from NYC taxi trips and serves them over gRPC; sustained 250,000 synthetic events/sec for 10 minutes with flat consumer lag on a 2 vCPU host.}
+        \resumeItem{Replicated the online store with a 5 node Raft group (PreVote, ReadIndex, snapshots, fsynced WAL) built without a consensus library; verified linearizability with Porcupine under leader kills, pauses and network partitions, with 381 ms median failover.}
+        \resumeItem{Achieved effectively once processing by committing Kafka offsets and window state atomically with feature updates in each Raft entry, yielding 0 mismatches against a batch oracle across 1M trips under repeated worker crashes.}
+        \resumeItem{Served linearizable reads at 13 ms p99 under 1,000 req/s open loop load, and added request coalescing that cut Redis cached p99 at 2,000 req/s from 33 ms to 22 ms.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {FrameSeek -- Multimodal Video Search Engine \hfill \normalfont\small \href{https://github.com/sohamb17/frameseek}{\underline{GitHub}} $|$ \href{https://sohamb17.github.io/frameseek/}{\underline{Demo}}}
+      {Python, Go, FastAPI, React, TypeScript, PostgreSQL, pgvector, LangChain, LangGraph, Docker}
+      \resumeItemListStart
+        \resumeItem{Built a video search engine that indexes speech (Whisper), on screen text (Tesseract OCR) and frames (OpenCLIP) into timestamped clips across five retrieval channels, with LangGraph conversational search over a custom LangChain retriever.}
+        \resumeItem{Engineered resumable ingestion on PostgreSQL with job leases, attempt generations, checksummed stage manifests and atomically published index versions, verified by worker crash, duplicate submission and failed reindex tests.}
+        \resumeItem{Developed a Go API with streaming uploads, SSRF safe URL import, idempotent jobs and signed media URLs in front of a Python FastAPI retrieval service on pgvector and PostgreSQL full text search.}
+        \resumeItem{Evaluated six retrieval arms on held out videos: a scikit-learn scorer over 25 cross modal features raised top 1 success from 26\% to 48\% over fixed rank fusion, while transcript only search reached 56\% (79 AI written labels).}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
@@ -151,16 +152,11 @@
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Languages}{: Python, Go, Java, TypeScript, C++, SQL, C, Groovy, Bash} \\
-     \textbf{Distributed Systems \& Data}{: Apache Spark, Apache Hive, Apache Kafka, Hadoop (HDFS), PostgreSQL, pgvector, Redis} \\
+     \textbf{Languages}{: Python, Java, Go, SQL, TypeScript, JavaScript, C++, Bash} \\
+     \textbf{Distributed Systems \& Data}{: Apache Kafka, Apache Spark, PostgreSQL, MongoDB, Redis, pgvector, Hadoop (HDFS)} \\
      \textbf{ML \& Retrieval}{: PyTorch, TensorFlow, scikit-learn, LangChain, LangGraph, pandas, NumPy} \\
-     \textbf{Cloud \& DevOps}{: AWS (S3, Batch, EC2), Docker, Kubernetes, Jenkins, CI/CD, AI coding assistants (GitHub Copilot, Cursor, Claude Code, OpenAI Codex, Gemini), Linux, Git, GitLab} \\
-     \textbf{Frameworks \& Protocols}{: Spring Boot, FastAPI, Django, React, Angular, Node.js, REST APIs, gRPC}
-     % OPT-IN CP LINE (added 2026-10-10): include ONLY when the job description mentions coding competitions
-     % (contests, ICPC, Codeforces, LeetCode, competitive programming). To enable: (1) add " \\" to the end of the
-     % Frameworks line above, (2) uncomment the line below, (3) shorten the Summer Intern bullet ending to
-     % "...integrated into a Jenkins pipeline to cut manual review effort." so the page stays at one page.
-     % \textbf{Competitive Programming}{: LeetCode Knight (rating 1859, top 6\%), Codeforces Specialist (rating 1446)}
+     \textbf{DevOps \& Tools}{: Docker, Jenkins, GitLab CI/CD, Linux, Git, AI coding tools (Claude Code, Copilot, Cursor)} \\
+     \textbf{Frameworks \& Protocols}{: Spring Boot, FastAPI, React, Angular, Node.js, Express, REST APIs, gRPC}
     }}
  \end{itemize}
  \vspace{-4pt}
